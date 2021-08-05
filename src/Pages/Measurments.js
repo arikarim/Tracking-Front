@@ -16,7 +16,7 @@ const Measurments = () => {
       const res = data.data.filter(
         (d) => d.user_id === user.id && d.measure_id === Number(id)
       );
-      console.log(res);
+      // console.log(res);
       setData(res);
     } catch (e) {
       console.log(e);
