@@ -37,8 +37,8 @@ const Show = () => {
   return (
     <Container>
       <Col>
-        <h1 className="text-center">{data.length > 0 && name}</h1>
-        {data.length > 0 && (
+        <h1 className="text-center">{data.id && name}</h1>
+        {data.id && (
           <div>
             <Link
               className="my-auto text-decoration-none"

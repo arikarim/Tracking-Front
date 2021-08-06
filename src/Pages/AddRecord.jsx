@@ -17,7 +17,6 @@ const AddRecord = () => {
   const fetchData = async () => {
     try {
       const data = await axios.get("http://localhost:3001/measures");
-      console.log(data.data);
       setData(data.data);
     } catch (e) {
       console.log(e);
@@ -35,7 +34,6 @@ const AddRecord = () => {
       const data = await axios.post("http://localhost:3001/measurments", {
         measurment,
       });
-      console.log(data.data);
       history.push("/");
     } catch (e) {
       console.log(e);
