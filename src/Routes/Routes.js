@@ -8,6 +8,7 @@ import Measurments from "../Pages/Measurments";
 import MeasurmentEdit from "../Pages/MeasurmentEdit";
 import Show from "../Pages/Show";
 import AddRecord from "../Pages/AddRecord";
+import Footer from "../Pages/Footer";
 
 const Routes = ({ user, setUser }) => {
   return (
@@ -47,6 +48,7 @@ const Routes = ({ user, setUser }) => {
             />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     </div>
