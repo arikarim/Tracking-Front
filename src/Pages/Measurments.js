@@ -34,7 +34,7 @@ const Measurments = () => {
             <Link
               className="my-auto text-decoration-none"
               key={m.id}
-              to={`/${name}/edit/${m.id}`}
+              to={`/${name}/show/${m.id}`}
             >
               <Card className="my-2">
                 <Card.Body className="d-flex justify-content-between">

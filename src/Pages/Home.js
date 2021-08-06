@@ -11,9 +11,6 @@ const Home = ({ user }) => {
   useEffect(() => {
     fetchData();
   }, []);
-  if (toke === "") {
-    return <Redirect to={"/login"} />;
-  }
 
   const fetchData = async () => {
     try {
@@ -24,6 +21,9 @@ const Home = ({ user }) => {
       console.log(e);
     }
   };
+  if (toke === "") {
+    return <Redirect to={"/login"} />;
+  }
   return (
     <Container>
       <Col>

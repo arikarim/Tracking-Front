@@ -6,6 +6,7 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Measurments from "../Pages/Measurments";
 import MeasurmentEdit from "../Pages/MeasurmentEdit";
+import Show from "../Pages/Show";
 
 const Routes = ({ user, setUser }) => {
   return (
@@ -30,6 +31,10 @@ const Routes = ({ user, setUser }) => {
             <Route
               path="/:name/edit/:id"
               render={(props) => <MeasurmentEdit {...props} />}
+            />
+            <Route
+              path="/:name/show/:id"
+              render={(props) => <Show {...props} />}
             />
             <Route
               path="/:name/:id"
