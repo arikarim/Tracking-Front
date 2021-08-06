@@ -36,7 +36,6 @@ const AddRecord = () => {
         measurment,
       });
       console.log(data.data);
-      setData(data.data);
       history.push("/");
     } catch (e) {
       console.log(e);
