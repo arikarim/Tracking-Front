@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-
+import { Link, useHistory } from "react-router-dom";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
+import DonutLargeIcon from "@material-ui/icons/DonutLarge";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 const useStyles = makeStyles({
   root: {
     width: 500,
@@ -13,8 +14,14 @@ const useStyles = makeStyles({
 });
 
 function SimpleBottomNavigation() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const history = useHistory();
+  useEffect(() => {
+    if (value === 0) history.push("/");
+    else if (value === 1) history.push("/addrecord");
+    else if (value === 2) history.push("/series");
+    else if (value === 3) history.push("/search");
+  }, [value, history]);
 
   return (
     <BottomNavigation
@@ -23,11 +30,29 @@ function SimpleBottomNavigation() {
         setValue(newValue);
       }}
       showLabels
-      className={classes.root}
+      className="bg-dark"
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction
+        className="text-light mx-0"
+        label="Track it"
+        icon={<TrendingUpIcon />}
+      />
+      <BottomNavigationAction
+        className="text-light mx-0"
+        label="Add Record"
+        to="/addrecoerd"
+        icon={<LibraryAddIcon />}
+      />
+      <BottomNavigationAction
+        className="text-light mx-0"
+        label="Progress"
+        icon={<DonutLargeIcon />}
+      />
+      <BottomNavigationAction
+        className="text-light mx-0"
+        label="More"
+        icon={<MoreHorizIcon />}
+      />
     </BottomNavigation>
   );
 }

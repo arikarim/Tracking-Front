@@ -26,7 +26,7 @@ const Measurments = () => {
     fetchData();
   }, []);
   return (
-    <Container>
+    <Container className="cont">
       <h1 className="mx-auto text-center">Measurments</h1>
       <Col>
         {data &&

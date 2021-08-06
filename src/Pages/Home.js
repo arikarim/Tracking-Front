@@ -25,7 +25,7 @@ const Home = ({ user }) => {
     return <Redirect to={"/login"} />;
   }
   return (
-    <Container>
+    <Container className="cont">
       <Col>
         {data &&
           data.map((measure) => (

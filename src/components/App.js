@@ -29,9 +29,9 @@ function App() {
     // eslint-disable-next-line
   }, [token, user]);
   return (
-    <div>
+    <>
       <Routes user={user} setUser={setUser} />
-    </div>
+    </>
   );
 }
 

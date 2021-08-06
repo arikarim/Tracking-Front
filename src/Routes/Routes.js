@@ -12,10 +12,10 @@ import Footer from "../Pages/Footer";
 
 const Routes = ({ user, setUser }) => {
   return (
-    <div>
+    <>
       <Router>
         <Nav setUser={setUser} />
-        <div className="container">
+        <div className="container cont">
           <Switch>
             <Route
               path="/signup"
@@ -51,7 +51,7 @@ const Routes = ({ user, setUser }) => {
           <Footer />
         </div>
       </Router>
-    </div>
+    </>
   );
 };
 

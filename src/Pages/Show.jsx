@@ -35,7 +35,7 @@ const Show = () => {
     }
   };
   return (
-    <Container>
+    <Container className="cont">
       <Col>
         <h1 className="text-center">{data.id && name}</h1>
         {data.id && (

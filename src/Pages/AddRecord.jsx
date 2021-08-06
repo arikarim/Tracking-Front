@@ -40,7 +40,7 @@ const AddRecord = () => {
     }
   };
   return (
-    <Form onSubmit={onSubmit}>
+    <Form className="cont" onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="formBasicNumber">
         <Form.Label>Number</Form.Label>
         <Form.Control

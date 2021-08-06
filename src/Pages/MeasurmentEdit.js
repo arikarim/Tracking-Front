@@ -43,7 +43,7 @@ const MeasurmentEdit = () => {
     fetchData();
   }, []);
   return (
-    <Container>
+    <Container className="cont">
       <Col>
         <h1 className="text-center">{name}</h1>
         {data && (
@@ -58,7 +58,7 @@ const MeasurmentEdit = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="w-100 btn-info" type="submit">
               Submit
             </Button>
           </Form>
