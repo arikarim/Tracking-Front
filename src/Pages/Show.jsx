@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 const Show = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const { name } = useParams();
+  const history = useHistory();
 
   const fetchData = async () => {
     try {
@@ -21,6 +22,18 @@ const Show = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const onDelete = async () => {
+    try {
+      const data = await axios.delete(
+        `http://localhost:3001/measurments/${id}`
+      );
+      history.push("/");
+      setData([]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <Container>
       <Col>
@@ -46,6 +59,9 @@ const Show = () => {
             </Card>
           </Link>
         )}
+        <button onClick={onDelete} className="btn btn-danger w-100">
+          Delete
+        </button>
       </Col>
     </Container>
   );
