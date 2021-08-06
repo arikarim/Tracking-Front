@@ -37,31 +37,34 @@ const Show = () => {
   return (
     <Container>
       <Col>
-        <h1 className="text-center">{name}</h1>
-        {data && (
-          <Link
-            className="my-auto text-decoration-none"
-            key={data.id}
-            to={`/${data.name}/edit/${data.id}`}
-          >
-            <Card>
-              <Card.Body className="d-flex justify-content-between">
-                <Card.Text className="my-auto text-decoration-none link-dark">
-                  {name}
-                </Card.Text>
-                <Card.Text className="my-auto text-decoration-none link-dark">
-                  {data.number}
-                </Card.Text>
-                <Card.Text className="my-auto text-decoration-none link-dark">
-                  {data.date}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Link>
+        <h1 className="text-center">{data.length > 0 && name}</h1>
+        {data.length > 0 && (
+          <div>
+            <Link
+              className="my-auto text-decoration-none"
+              key={data.id}
+              to={`/${data.name}/edit/${data.id}`}
+            >
+              <Card>
+                <Card.Body className="d-flex justify-content-between">
+                  <Card.Text className="my-auto text-decoration-none link-dark">
+                    {name}
+                    {console.log(data)}
+                  </Card.Text>
+                  <Card.Text className="my-auto text-decoration-none link-dark">
+                    {data.number}
+                  </Card.Text>
+                  <Card.Text className="my-auto text-decoration-none link-dark">
+                    {data.date}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
+            <button onClick={onDelete} className="btn btn-danger w-100">
+              Delete
+            </button>
+          </div>
         )}
-        <button onClick={onDelete} className="btn btn-danger w-100">
-          Delete
-        </button>
       </Col>
     </Container>
   );

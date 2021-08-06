@@ -7,6 +7,7 @@ import Signup from "../Pages/Signup";
 import Measurments from "../Pages/Measurments";
 import MeasurmentEdit from "../Pages/MeasurmentEdit";
 import Show from "../Pages/Show";
+import AddRecord from "../Pages/AddRecord";
 
 const Routes = ({ user, setUser }) => {
   return (
@@ -27,6 +28,10 @@ const Routes = ({ user, setUser }) => {
               render={(props) => (
                 <Login {...props} user={user} setUser={setUser} />
               )}
+            />
+            <Route
+              path="/addrecord"
+              render={(props) => <AddRecord {...props} />}
             />
             <Route
               path="/:name/edit/:id"
