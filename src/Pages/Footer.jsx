@@ -19,8 +19,8 @@ function SimpleBottomNavigation() {
   useEffect(() => {
     if (value === 0) history.push("/");
     else if (value === 1) history.push("/addrecord");
-    else if (value === 2) history.push("/series");
-    else if (value === 3) history.push("/search");
+    else if (value === 2) history.push("/progress");
+    else if (value === 3) history.push("/profile");
   }, [value, history]);
 
   return (

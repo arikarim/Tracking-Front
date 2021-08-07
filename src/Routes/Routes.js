@@ -9,6 +9,7 @@ import MeasurmentEdit from "../Pages/MeasurmentEdit";
 import Show from "../Pages/Show";
 import AddRecord from "../Pages/AddRecord";
 import Footer from "../Pages/Footer";
+import Profile from "../Pages/Profile";
 
 const Routes = ({ user, setUser }) => {
   return (
@@ -46,6 +47,7 @@ const Routes = ({ user, setUser }) => {
               path="/:name/:id"
               render={(props) => <Measurments {...props} />}
             />
+            <Route path="/profile" render={(props) => <Profile {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
           <Footer />
