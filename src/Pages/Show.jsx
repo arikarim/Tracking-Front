@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 const Show = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -57,10 +57,11 @@ const Show = () => {
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {data.date}
                   </Card.Text>
+                  <CircularProgress variant="determinate" value={data.number} />
                 </Card.Body>
               </Card>
             </Link>
-            <button onClick={onDelete} className="btn btn-danger w-100">
+            <button onClick={onDelete} className="btn btn-danger my-3 w-100">
               Delete
             </button>
           </div>
