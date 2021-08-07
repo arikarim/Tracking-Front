@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router";
+import final from "../PureFunctions/date";
 
 const AddRecord = () => {
   const [measurments, setMeasurments] = useState([]);
@@ -45,14 +46,8 @@ const AddRecord = () => {
       ids.push(item.measure_id);
       dates.push(item.date);
     });
-    console.log(dates);
-    let de = new Date().toISOString().slice(0, 10);
-    de = de.split("-");
-    let newde = [];
-    newde.push(de[0]);
-    newde.push(de[2]);
-    newde.push(de[1]);
-    let final = newde.join("-");
+    console.log(new Date(Date.now()).toLocaleString().split(",")[0]);
+
     console.log(final);
     if (ids.includes(Number(measure_id)) && dates.includes(final)) {
       console.log("error");
