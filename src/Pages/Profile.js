@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import image from "../images/react.png";
 import "./profile.css";
 import "./pro.css";
+import { Link } from "react-router-dom";
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   return (
@@ -17,9 +18,9 @@ const Profile = () => {
           />
           <h1 className="text-dark text-center">{user.bio || "Stranger"}</h1>
           <p className=" text-center">{user.about || "Not available "}</p>
-          <a className="btn btn-light" href="/editprofile">
+          <Link className="btn btn-light" to="/editprofile">
             Edit profile
-          </a>
+          </Link>
           {/* <div className="progress__chart__text">
             <span className="txt">You achieved</span>
             <span className="num">60</span>

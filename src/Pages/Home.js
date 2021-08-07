@@ -34,7 +34,7 @@ const Home = ({ user }) => {
     }
   };
 
-  if (toke === "") {
+  if (!toke) {
     return <Redirect to={"/login"} />;
   }
   return (
@@ -52,17 +52,17 @@ const Home = ({ user }) => {
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {measure.name}
                   </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark d-flex">
-                    <p className="my-auto mx-2">Rate</p>
-                    <p className="my-auto mx-2">
+                  <div className="my-auto text-decoration-none link-dark d-flex">
+                    <div className="my-auto mx-2">Rate</div>
+                    <div className="my-auto mx-2">
                       {measurments &&
                         (measurments.filter((d) => d.measure_id == measure.id)
                           .length *
                           100) /
                           measurments.length}
                       %
-                    </p>
-                  </Card.Text>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </Link>

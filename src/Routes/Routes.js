@@ -10,6 +10,7 @@ import Show from "../Pages/Show";
 import AddRecord from "../Pages/AddRecord";
 import Footer from "../Pages/Footer";
 import Profile from "../Pages/Profile";
+import EditProfile from "../Pages/EditProfile";
 
 const Routes = ({ user, setUser }) => {
   return (
@@ -47,6 +48,7 @@ const Routes = ({ user, setUser }) => {
               path="/:name/:id"
               render={(props) => <Measurments {...props} />}
             />
+            <Route path="/editprofile" component={EditProfile} />
             <Route path="/profile" render={(props) => <Profile {...props} />} />
             <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
