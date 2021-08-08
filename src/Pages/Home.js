@@ -1,15 +1,12 @@
-import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
-const Home = ({ user }) => {
+const Home = () => {
   const [data, setData] = useState([]);
   const [measurments, setMeasurments] = useState([]);
-  const [correct, setCorrect] = useState(null);
-  const toke = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     fetchData();
@@ -19,7 +16,6 @@ const Home = ({ user }) => {
   const fetchData = async () => {
     try {
       const data = await axios.get("http://localhost:3001/measures");
-      // console.log(data.data);
       setData(data.data);
     } catch (e) {
       console.log(e);
@@ -33,8 +29,9 @@ const Home = ({ user }) => {
       console.log(e);
     }
   };
-
-  if (!toke) {
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
     return <Redirect to={"/login"} />;
   }
   return (
@@ -56,10 +53,13 @@ const Home = ({ user }) => {
                     <div className="my-auto mx-2">Rate</div>
                     <div className="my-auto mx-2">
                       {measurments &&
-                        (measurments.filter((d) => d.measure_id == measure.id)
-                          .length *
-                          100) /
-                          measurments.length}
+                        (
+                          (measurments.filter(
+                            (d) => d.measure_id === measure.id
+                          ).length *
+                            100) /
+                          measurments.length
+                        ).toFixed(2)}
                       %
                     </div>
                   </div>

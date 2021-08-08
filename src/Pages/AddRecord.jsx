@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import final from "../PureFunctions/date";
 
 const AddRecord = () => {
@@ -10,12 +10,16 @@ const AddRecord = () => {
   const [number, setNumber] = useState(null);
   const [measure_id, setMeasure_id] = useState(null);
   const history = useHistory();
-  const toke = JSON.parse(localStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     fetchData();
     fetchMeasurments();
   }, []);
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
+    return <Redirect to={"/login"} />;
+  }
 
   const fetchData = async () => {
     try {
@@ -42,6 +46,7 @@ const AddRecord = () => {
     const items = measurments.filter(
       (item) => item.measure_id === Number(measure_id)
     );
+    // eslint-disable-next-line
     items.map((item) => {
       ids.push(item.measure_id);
       dates.push(item.date);
@@ -60,7 +65,7 @@ const AddRecord = () => {
         date: new Date(Date.now()).toLocaleString().split(",")[0],
       };
       try {
-        const data = await axios.post("http://localhost:3001/measurments", {
+        await axios.post("http://localhost:3001/measurments", {
           measurment,
         });
         history.push("/");

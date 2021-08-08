@@ -16,6 +16,7 @@ const Profile = () => {
   };
   useEffect(() => {
     fetchuser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userr]);
   return (
     <Container className="cont bg-light">

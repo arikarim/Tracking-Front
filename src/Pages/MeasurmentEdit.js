@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
-import { useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 
 const MeasurmentEdit = () => {
   const [data, setData] = useState([]);
   const [number, setNumber] = useState(null);
-  const [measure_id, setMeasure_id] = useState("");
   const history = useHistory();
   const { id } = useParams();
   const { name } = useParams();
@@ -30,7 +29,7 @@ const MeasurmentEdit = () => {
     };
     e.preventDefault();
     try {
-      const data = await axios.put(`http://localhost:3001/measurments/${id}`, {
+      await axios.put(`http://localhost:3001/measurments/${id}`, {
         measurment,
       });
       history.push("/");
@@ -41,7 +40,13 @@ const MeasurmentEdit = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
+    return <Redirect to={"/login"} />;
+  }
   return (
     <Container className="cont">
       <Col>

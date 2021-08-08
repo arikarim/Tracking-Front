@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
 
 function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);

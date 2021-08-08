@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import final from "../PureFunctions/date";
 import dateHandle from "../PureFunctions/time";
 
 const Measurments = () => {
-  const [data, setData] = useState([]);
   const [today, setToday] = useState([]);
   const [yesterday, setYesterday] = useState([]);
   const [lastWeek, setLastWeek] = useState([]);
@@ -31,14 +30,20 @@ const Measurments = () => {
       );
       setLastWeek(res.filter((item) => dateHandle(item.date, final) > 31));
       // console.log(res);
-      setData(res);
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
+    return <Redirect to={"/login"} />;
+  }
   return (
     <Container className="cont">
       <h1 className="mx-auto text-center">Measurments</h1>

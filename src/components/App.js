@@ -12,13 +12,15 @@ function App() {
 
     if (token !== "") {
       try {
-        const dataa = await axios.get("http://localhost:3001/member", {
+        await axios.get("http://localhost:3001/member", {
           headers: {
             "Content-Type": "application/json",
             Authorization: token,
           },
         });
+        localStorage.setItem("valid", JSON.stringify("valid"));
       } catch (e) {
+        localStorage.setItem("valid", JSON.stringify("invalid"));
         console.log(e);
       }
     }

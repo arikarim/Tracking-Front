@@ -21,13 +21,12 @@ const Show = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDelete = async () => {
     try {
-      const data = await axios.delete(
-        `http://localhost:3001/measurments/${id}`
-      );
+      await axios.delete(`http://localhost:3001/measurments/${id}`);
       history.push("/");
       setData([]);
     } catch (e) {

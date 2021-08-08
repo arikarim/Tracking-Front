@@ -2,15 +2,21 @@ import { Container } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { Redirect } from "react-router";
 
 const EditProfile = () => {
   const [bio, setBio] = useState("");
   const [about, setAbout] = useState("");
   const [image, setImage] = useState(null);
   const [password, setPassword] = useState(null);
-  // const [state, setstate] = useState(initialState)
-  const toke = JSON.parse(localStorage.getItem("token"));
   const userr = JSON.parse(localStorage.getItem("user"));
+
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
+    return <Redirect to={"/login"} />;
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const body = new FormData();
