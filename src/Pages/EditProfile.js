@@ -2,15 +2,17 @@ import { Container } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 const EditProfile = () => {
   const [bio, setBio] = useState("");
+  const [name, setName] = useState("");
   const [about, setAbout] = useState("");
   const [image, setImage] = useState(null);
   const [password, setPassword] = useState(null);
   const userr = JSON.parse(localStorage.getItem("user"));
-
+  const history = useHistory();
+  console.log(userr);
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
   if (!toke || valid === "invalid") {
@@ -20,10 +22,13 @@ const EditProfile = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const body = new FormData();
+    body.append("name", name);
     body.append("user[bio]", bio);
     body.append("user[about]", about);
     body.append("user[current_password]", password);
-    body.append("user[image]", image);
+    if (image) {
+      body.append("user[image]", image);
+    }
 
     const headers = {
       "Content-Type": "multipart/form-data",
@@ -33,6 +38,7 @@ const EditProfile = () => {
       const data = await axios.put("http://localhost:3001/users", body, {
         headers: headers,
       });
+      history.push("/");
       console.log(data.data);
     } catch (error) {
       console.log(error);
@@ -41,6 +47,16 @@ const EditProfile = () => {
   return (
     <Container className="cont">
       <Form className="cont" onSubmit={onSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            defaultValue={userr.name}
+            placeholder="Enter Name"
+            maxLength="100"
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicBio">
           <Form.Label>Bio</Form.Label>
           <Form.Control
@@ -49,7 +65,6 @@ const EditProfile = () => {
             defaultValue={userr.bio}
             placeholder="Enter Bio"
             maxLength="140"
-            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicBio">
@@ -76,6 +91,7 @@ const EditProfile = () => {
             type="password"
             placeholder="password"
             maxLength="500"
+            required
           />
         </Form.Group>
 
