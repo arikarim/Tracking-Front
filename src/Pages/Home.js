@@ -1,15 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [measurments, setMeasurments] = useState([]);
+  const userr = useSelector((state) => state.user);
 
   useEffect(() => {
     fetchData();
+    console.log(userr);
     fetchMeasurments();
   }, []);
 

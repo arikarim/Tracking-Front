@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router";
 import "./registration.css";
+import { createUser } from "../Actions/user";
+import { useDispatch } from "react-redux";
 
 const Login = ({ setUser, user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -16,6 +19,7 @@ const Login = ({ setUser, user }) => {
           password: password,
         },
       });
+      // dispatch(createUser(data.data.user));
       localStorage.setItem("token", JSON.stringify(data.headers.authorization));
       localStorage.setItem("user", JSON.stringify(data.data.user));
       setUser(data.data.user);

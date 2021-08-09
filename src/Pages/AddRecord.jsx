@@ -11,6 +11,23 @@ const AddRecord = () => {
   const [measure_id, setMeasure_id] = useState(null);
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
+  const fetchData = async () => {
+    try {
+      const data = await axios.get("http://localhost:3001/measures");
+      // console.log(data.data);
+      setData(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const fetchMeasurments = async () => {
+    try {
+      const data = await axios.get("http://localhost:3001/measurments");
+      setMeasurments(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     fetchData();
     fetchMeasurments();
@@ -21,24 +38,6 @@ const AddRecord = () => {
     return <Redirect to={"/login"} />;
   }
 
-  const fetchData = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measures");
-      // console.log(data.data);
-      setData(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const fetchMeasurments = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measurments");
-      setMeasurments(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const onSubmit = async (e) => {
     e.preventDefault();
     let ids = [];
