@@ -1,7 +1,7 @@
 // Create user action
-const createUser = (user) => {
+export const createUser = (user) => {
   return {
-    type: "LOGIN_USER",
+    type: "CREATE_USER",
     user,
   };
 };

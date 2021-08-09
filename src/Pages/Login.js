@@ -19,11 +19,12 @@ const Login = ({ setUser, user }) => {
           password: password,
         },
       });
-      // dispatch(createUser(data.data.user));
+      localStorage.setItem("valid", JSON.stringify("valid"));
       localStorage.setItem("token", JSON.stringify(data.headers.authorization));
       localStorage.setItem("user", JSON.stringify(data.data.user));
       setUser(data.data.user);
       history.push("/");
+      dispatch(createUser(data.data.user));
     } catch (error) {
       console.log(error);
     }

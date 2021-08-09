@@ -7,7 +7,8 @@ const Signup = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  if (user === "Logged") {
+  const toke = JSON.parse(localStorage.getItem("token"));
+  if (toke !== "") {
     return <Redirect to={"/"} />;
   }
 

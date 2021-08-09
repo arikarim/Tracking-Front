@@ -6,23 +6,9 @@ import "./profile.css";
 import "./pro.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 const Profile = () => {
-  const [userr, setUserr] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const fetchuser = async () => {
-    try {
-      const res = await axios.get("http://localhost:3001/users/index");
-      const correct = res.data.filter((item) => item.id === user.id);
-      setUserr(correct[0]);
-      console.log(correct);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchuser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const userr = useSelector((state) => state.user);
   return (
     <Container className="cont bg-light">
       <Row>
@@ -30,11 +16,14 @@ const Profile = () => {
           <img
             className="user-image mx-auto my-2"
             src={
-              (userr && userr.image_data.metadata.cloudinary.secure_url) ||
+              (userr &&
+                userr.image_data &&
+                userr.image_data.metadata.cloudinary.secure_url) ||
               image
             }
             alt="avatar"
           />
+          {console.log(userr)}
           <h1 className="text-dark text-center">{userr && userr.name}</h1>
           <p className=" text-center">
             {(userr && userr.bio) || "Not available"}

@@ -1,12 +1,12 @@
 // Create user reducer
 export const userReducer = (state = {}, action) => {
   switch (action.type) {
-    case "LOGIN_USER":
+    case "CREATE_USER":
       return {
         ...state,
         ...action.user,
       };
-    case "LOGOUT_USER":
+    case "DELETE_USER":
       return {};
     default:
       return state;
