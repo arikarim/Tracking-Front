@@ -23,7 +23,6 @@ const Profile = () => {
             }
             alt="avatar"
           />
-          {console.log(userr)}
           <h1 className="text-dark text-center">{userr && userr.name}</h1>
           <p className=" text-center">
             {(userr && userr.bio) || "Not available"}

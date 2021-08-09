@@ -5,35 +5,23 @@ import Routes from "../Routes/Routes";
 import { createUser } from "../Actions/user";
 
 function App() {
-  const [token, setToken] = useState("");
   const [user, setUser] = useState([]);
   const toke = JSON.parse(localStorage.getItem("token"));
-  const userr = JSON.parse(localStorage.getItem("user"));
+  const userr = JSON.parse(localStorage.getItem("correctuser"));
   const dispatch = useDispatch();
-  const fetchUser = async () => {
-    if (toke !== "") {
-      try {
-        const res = await axios.get("http://localhost:3001/users/index");
-        const correct = res.data.filter((item) => item.id === userr.id);
-        localStorage.setItem("correctuser", JSON.stringify(correct[0]));
-        dispatch(createUser(correct[0]));
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
 
   const fetchData = async () => {
-    setToken(toke);
-
-    if (token !== "") {
+    if (toke !== "") {
       try {
-        await axios.get("http://localhost:3001/member", {
+        const data = await axios.get("http://localhost:3001/member", {
           headers: {
             "Content-Type": "application/json",
-            Authorization: token,
+            Authorization: toke,
           },
         });
+        console.log(data.data.user);
+        localStorage.setItem("correctuser", JSON.stringify(data.data.user));
+        dispatch(createUser(data.data.user));
         localStorage.setItem("valid", JSON.stringify("valid"));
       } catch (e) {
         localStorage.setItem("valid", JSON.stringify("invalid"));
@@ -44,9 +32,9 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    fetchUser();
+    console.log(userr);
     // eslint-disable-next-line
-  }, [token, user]);
+  }, [toke, userr]);
   return (
     <>
       <Routes user={user} setUser={setUser} />

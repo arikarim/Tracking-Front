@@ -15,6 +15,7 @@ export const logout = async (setUser, history) => {
     });
     localStorage.setItem("token", JSON.stringify(""));
     localStorage.setItem("user", JSON.stringify([]));
+    localStorage.setItem("valid", JSON.stringify("invalid"));
     setUser("Not Logged");
     history.push("/login");
   } catch (error) {

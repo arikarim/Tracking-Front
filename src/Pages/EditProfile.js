@@ -2,15 +2,16 @@ import { Container } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 
 const EditProfile = () => {
-  const [bio, setBio] = useState("");
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
+  const userr = useSelector((state) => state.user);
+  const [bio, setBio] = useState(userr.bio);
+  const [name, setName] = useState(userr.name);
+  const [about, setAbout] = useState(userr.about);
   const [image, setImage] = useState(null);
   const [password, setPassword] = useState(null);
-  const userr = JSON.parse(localStorage.getItem("user"));
   const history = useHistory();
   console.log(userr);
   const toke = JSON.parse(localStorage.getItem("token"));
@@ -22,7 +23,7 @@ const EditProfile = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const body = new FormData();
-    body.append("name", name);
+    body.append("user[name]", name);
     body.append("user[bio]", bio);
     body.append("user[about]", about);
     body.append("user[current_password]", password);
@@ -38,6 +39,7 @@ const EditProfile = () => {
       const data = await axios.put("http://localhost:3001/users", body, {
         headers: headers,
       });
+      localStorage.setItem("correctuser", JSON.stringify(data.data));
       history.push("/");
       console.log(data.data);
     } catch (error) {
