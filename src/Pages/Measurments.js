@@ -1,8 +1,11 @@
+import { CircularProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
+import Moment from "react-moment";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Progress from "../components/Progress";
 import final from "../PureFunctions/date";
 import dateHandle from "../PureFunctions/time";
 
@@ -12,6 +15,8 @@ const Measurments = () => {
   const [lastWeek, setLastWeek] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const { id, name } = useParams();
+
+  const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
 
   const fetchData = async () => {
@@ -20,6 +25,8 @@ const Measurments = () => {
         const res = await measurments[0].filter(
           (d) => d.user_id === user.id && d.measure_id === Number(id)
         );
+        const sum = res.reduce((acc, item) => acc + item.number, 0);
+        setProgress((sum / res.length).toFixed(2));
         setToday(res.filter((item) => dateHandle(item.date, final) < 29));
         setYesterday(
           res.filter(
@@ -47,6 +54,7 @@ const Measurments = () => {
   return (
     <Container className="cont">
       <h1 className="mx-auto text-center">Measurments</h1>
+      <Progress number={progress} time={name} />
       <Col>
         {today.length > 0 && <h5>Today:</h5>}
         {today.length > 0 &&
@@ -58,14 +66,12 @@ const Measurments = () => {
             >
               <Card className="my-2">
                 <Card.Body className="d-flex justify-content-between">
+                  <CircularProgress variant="determinate" value={m.number} />
+                  <Moment className="text-dark" format="LL">
+                    {m.created_at}
+                  </Moment>
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    {name}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.number}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.date}
+                    {m.number} Interviews
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -81,14 +87,12 @@ const Measurments = () => {
             >
               <Card className="my-2">
                 <Card.Body className="d-flex justify-content-between">
+                  <CircularProgress variant="determinate" value={m.number} />
+                  <Moment className="text-dark" format="LL">
+                    {m.created_at}
+                  </Moment>
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    {name}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.number}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.date}
+                    {m.number} Interviews
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -104,14 +108,12 @@ const Measurments = () => {
             >
               <Card className="my-2">
                 <Card.Body className="d-flex justify-content-between">
+                  <CircularProgress variant="determinate" value={m.number} />
+                  <Moment className="text-dark" format="LL">
+                    {m.created_at}
+                  </Moment>
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    {name}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.number}
-                  </Card.Text>
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    {m.date}
+                    {m.number} {name.charAt(0).toUpperCase() + name.slice(1)}
                   </Card.Text>
                 </Card.Body>
               </Card>

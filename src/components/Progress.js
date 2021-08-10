@@ -10,29 +10,14 @@ import final from "../PureFunctions/date";
 import dateHandle from "../PureFunctions/time";
 import "./progress.css";
 import RadialSeparators from "./RadialSeparators";
-const Progress = () => {
-  const [progress, setProgress] = React.useState(0);
-  const measurments = useSelector((state) => state.measurments);
-  const getProgress = () => {
-    if (measurments[0]) {
-      const res = measurments[0].filter(
-        (item) => dateHandle(item.date, final) > 31
-      );
-      const sum = res.reduce((acc, item) => acc + item.number, 0);
-      setProgress(sum / res.length);
-    }
-  };
-  useEffect(() => {
-    getProgress();
-  }, [measurments[0]]);
-
+const Progress = ({ number, time }) => {
   return (
     <Row className="my-2 pro p-3">
-      <h4 className="text-center">Your achivement in the last month</h4>
+      <h4 className="text-center">Your achivement for {time}</h4>
       <div className="mx-auto" style={{ width: 200, height: 200 }}>
         <CircularProgressbarWithChildren
-          value={progress && progress}
-          text={`${progress && progress}%`}
+          value={number && number}
+          text={`${number && number}%`}
           strokeWidth={10}
           styles={buildStyles({
             strokeLinecap: "butt",

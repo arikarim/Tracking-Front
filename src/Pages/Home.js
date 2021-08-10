@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import Progress from "../components/Progress";
+import final from "../PureFunctions/date";
+import dateHandle from "../PureFunctions/time";
 
 const Home = () => {
   const userr = useSelector((state) => state.user);
   const measures = useSelector((state) => state.measure);
+  const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
+  const getProgress = () => {
+    if (measurments[0]) {
+      const res = measurments[0].filter(
+        (item) => dateHandle(item.date, final) > 31
+      );
+      const sum = res.reduce((acc, item) => acc + item.number, 0);
+      setProgress(sum / res.length);
+    }
+  };
+
   useEffect(() => {
-    console.log(measurments);
+    getProgress();
   }, []);
 
   const toke = JSON.parse(localStorage.getItem("token"));
@@ -20,7 +33,7 @@ const Home = () => {
   }
   return (
     <Container className="cont">
-      <Progress />
+      <Progress number={progress} time="last month" />
       <Col>
         {measures[0] &&
           measures[0].map((measure) => (

@@ -9,7 +9,7 @@ const Navv = ({ setUser }) => {
   return (
     <Navbar className="nav" expand="lg">
       <Container fluid={true} className="">
-        <h3 className="py-3 mx-auto text-center text-white">Track.it</h3>
+        <h3 className="py-2 mx-auto text-center text-white">Track.it</h3>
         <Navbar.Toggle className="toglle" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {toke !== "" ? (
