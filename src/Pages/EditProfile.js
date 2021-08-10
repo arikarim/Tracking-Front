@@ -13,7 +13,6 @@ const EditProfile = () => {
   const [image, setImage] = useState(null);
   const [password, setPassword] = useState(null);
   const history = useHistory();
-  console.log(userr);
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
   if (!toke || valid === "invalid") {

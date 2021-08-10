@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Routes from "../Routes/Routes";
 import { createUser } from "../Actions/user";
-
+import { createMeasure } from "../Actions/measure";
+import { createMeasurments } from "../Actions/measure";
 function App() {
   const [user, setUser] = useState([]);
   const toke = JSON.parse(localStorage.getItem("token"));
   const userr = JSON.parse(localStorage.getItem("correctuser"));
   const dispatch = useDispatch();
 
-  const fetchData = async () => {
+  const fetchUser = async () => {
     if (toke !== "") {
       try {
         const data = await axios.get("http://localhost:3001/member", {
@@ -19,7 +20,6 @@ function App() {
             Authorization: toke,
           },
         });
-        console.log(data.data.user);
         localStorage.setItem("correctuser", JSON.stringify(data.data.user));
         dispatch(createUser(data.data.user));
         localStorage.setItem("valid", JSON.stringify("valid"));
@@ -30,9 +30,32 @@ function App() {
     }
   };
 
+  const fetchMeasure = async () => {
+    if (toke !== "") {
+      try {
+        const data = await axios.get("http://localhost:3001/measures");
+        dispatch(createMeasure(data.data));
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
+  const fetchMeasurments = async () => {
+    if (toke !== "") {
+      try {
+        const data = await axios.get("http://localhost:3001/measurments");
+        dispatch(createMeasurments(data.data));
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   useEffect(() => {
-    fetchData();
-    console.log(userr);
+    fetchUser();
+    fetchMeasure();
+    fetchMeasurments();
     // eslint-disable-next-line
   }, [toke, userr]);
   return (

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router";
 
 const MeasurmentEdit = () => {
@@ -9,14 +10,11 @@ const MeasurmentEdit = () => {
   const history = useHistory();
   const { id } = useParams();
   const { name } = useParams();
+  const measurments = useSelector((state) => state.measurments);
 
   const fetchData = async () => {
-    try {
-      const data = await axios.get(`http://localhost:3001/measurments/${id}`);
-      console.log(data.data);
-      setData(data.data);
-    } catch (e) {
-      console.log(e);
+    if (measurments[0] !== undefined) {
+      setData(measurments[0].filter((m) => m.id === Number(id))[0]);
     }
   };
 
@@ -41,7 +39,7 @@ const MeasurmentEdit = () => {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [measurments[0]]);
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
   if (!toke || valid === "invalid") {

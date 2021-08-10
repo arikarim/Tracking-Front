@@ -12,7 +12,6 @@ const Show = () => {
   const fetchData = async () => {
     try {
       const data = await axios.get(`http://localhost:3001/measurments/${id}`);
-      console.log(data.data);
       setData(data.data);
     } catch (e) {
       console.log(e);
@@ -48,7 +47,6 @@ const Show = () => {
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {name}
-                    {console.log(data)}
                   </Card.Text>
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {data.number}

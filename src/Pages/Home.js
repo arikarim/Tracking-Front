@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -6,31 +5,11 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [measurments, setMeasurments] = useState([]);
   const userr = useSelector((state) => state.user);
+  const measures = useSelector((state) => state.measure);
+  const measurments = useSelector((state) => state.measurments);
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    fetchData();
-    fetchMeasurments();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measures");
-      setData(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const fetchMeasurments = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measurments");
-      setMeasurments(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
   if (!toke || valid === "invalid") {
@@ -39,8 +18,8 @@ const Home = () => {
   return (
     <Container className="cont">
       <Col>
-        {data &&
-          data.map((measure) => (
+        {measures[0] &&
+          measures[0].map((measure) => (
             <Link
               className="my-auto text-decoration-none link-dark"
               key={measure.id}
@@ -54,13 +33,13 @@ const Home = () => {
                   <div className="my-auto text-decoration-none link-dark d-flex">
                     <div className="my-auto mx-2">Rate</div>
                     <div className="my-auto mx-2">
-                      {measurments &&
+                      {measurments[0] &&
                         (
-                          (measurments.filter(
+                          (measurments[0].filter(
                             (d) => d.measure_id === measure.id
                           ).length *
                             100) /
-                          measurments.length
+                          measurments[0].length
                         ).toFixed(2)}
                       %
                     </div>
