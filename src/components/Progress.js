@@ -14,25 +14,25 @@ const Progress = () => {
   const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
   const getProgress = () => {
-    const res = measurments[0]
-      .filter((item) => dateHandle(item.date, final) < 29)
-      .reduce((acc = 0, item) => acc + item.number);
+    if (measurments[0]) {
+      const res = measurments[0].filter(
+        (item) => dateHandle(item.date, final) > 31
+      );
+      const sum = res.reduce((acc, item) => acc + item.number, 0);
+      setProgress(sum / res.length);
+    }
   };
-  useEffect(() => {}, [measurments]);
+  useEffect(() => {
+    getProgress();
+  }, [measurments[0]]);
 
   return (
-    <Row className="">
-      {measurments[0] &&
-        console.log(
-          measurments[0]
-            .filter((item) => dateHandle(item.date, final) < 29)
-            .reduce((acc = 0, item) => acc + item.number)
-        )}
+    <Row className="my-2 pro p-3">
       <h4 className="text-center">Your achivement in the last month</h4>
       <div className="mx-auto" style={{ width: 200, height: 200 }}>
         <CircularProgressbarWithChildren
-          value={50}
-          text={`${80}%`}
+          value={progress && progress}
+          text={`${progress && progress}%`}
           strokeWidth={10}
           styles={buildStyles({
             strokeLinecap: "butt",
