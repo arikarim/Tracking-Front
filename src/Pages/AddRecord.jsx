@@ -1,37 +1,19 @@
 import axios from "axios";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
-import final from "../PureFunctions/date";
 
 const AddRecord = () => {
-  const [measurments, setMeasurments] = useState([]);
-  const [data, setData] = useState([]);
   const [number, setNumber] = useState(null);
   const [measure_id, setMeasure_id] = useState(null);
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
-  const fetchData = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measures");
-      // console.log(data.data);
-      setData(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const fetchMeasurments = async () => {
-    try {
-      const data = await axios.get("http://localhost:3001/measurments");
-      setMeasurments(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-    fetchMeasurments();
-  }, []);
+  const measures = useSelector((state) => state.measure);
+  const measurments = useSelector((state) => state.measurments);
+
+  useEffect(() => {}, []);
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
   if (!toke || valid === "invalid") {
@@ -42,18 +24,19 @@ const AddRecord = () => {
     e.preventDefault();
     let ids = [];
     let dates = [];
-    const items = measurments.filter(
+    const items = measurments[0].filter(
       (item) => item.measure_id === Number(measure_id)
     );
     // eslint-disable-next-line
     items.map((item) => {
       ids.push(item.measure_id);
-      dates.push(item.date);
+      dates.push(moment(item.created_at).format("L"));
     });
-    console.log(new Date(Date.now()).toLocaleString().split(",")[0]);
 
-    console.log(final);
-    if (ids.includes(Number(measure_id)) && dates.includes(final)) {
+    if (
+      ids.includes(Number(measure_id)) &&
+      dates.includes(moment(new Date()).format("L"))
+    ) {
       console.log("error");
       return;
     } else {
@@ -89,8 +72,8 @@ const AddRecord = () => {
         required
       >
         <option>Choose one</option>
-        {data &&
-          data.map((item) => (
+        {measures[0] &&
+          measures[0].map((item) => (
             <option key={item.id} value={item.id}>
               {item.name}
             </option>

@@ -1,3 +1,4 @@
+import moment from "moment";
 import { CircularProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container } from "react-bootstrap";
@@ -15,27 +16,48 @@ const Measurments = () => {
   const [lastWeek, setLastWeek] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const { id, name } = useParams();
+  const [data, setData] = useState([]);
 
   const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
-
+  var now = moment(new Date());
   const fetchData = async () => {
     if (measurments[0] !== undefined) {
       try {
         const res = await measurments[0].filter(
           (d) => d.user_id === user.id && d.measure_id === Number(id)
         );
+        setData(res);
+        console.log(res);
         const sum = res.reduce((acc, item) => acc + item.number, 0);
         setProgress((sum / res.length).toFixed(2));
-        setToday(res.filter((item) => dateHandle(item.date, final) < 29));
+        setToday(
+          res.filter(
+            (item) =>
+              Number(
+                moment.duration(now.diff(item.created_at)).asDays().toFixed(0)
+              ) === 0
+          )
+        );
         setYesterday(
           res.filter(
             (item) =>
-              dateHandle(item.date, final) > 29 &&
-              dateHandle(item.date, final) <= 31
+              Number(
+                moment.duration(now.diff(item.created_at)).asDays().toFixed(0)
+              ) >= 1 &&
+              Number(
+                moment.duration(now.diff(item.created_at)).asDays().toFixed(0)
+              ) < 2
           )
         );
-        setLastWeek(res.filter((item) => dateHandle(item.date, final) > 31));
+        setLastWeek(
+          res.filter(
+            (item) =>
+              Number(
+                moment.duration(now.diff(item.created_at)).asDays().toFixed(0)
+              ) > 2
+          )
+        );
       } catch (e) {
         console.log(e);
       }
