@@ -8,7 +8,6 @@ import final from "../PureFunctions/date";
 import dateHandle from "../PureFunctions/time";
 
 const Home = () => {
-  const userr = useSelector((state) => state.user);
   const measures = useSelector((state) => state.measure);
   const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
@@ -24,6 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     getProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toke = JSON.parse(localStorage.getItem("token"));

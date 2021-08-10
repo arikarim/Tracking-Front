@@ -4,18 +4,13 @@ import { Card, Col, Container } from "react-bootstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Moment from "react-moment";
-import dateHandle from "../PureFunctions/time";
-import final from "../PureFunctions/date";
-import { useSelector } from "react-redux";
 import Progress from "../components/Progress";
 const Show = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const { name } = useParams();
   const history = useHistory();
-
   const [progress, setProgress] = React.useState(0);
-  const measurments = useSelector((state) => state.measurments);
 
   const fetchData = async () => {
     try {

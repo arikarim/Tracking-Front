@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Row } from "react-bootstrap";
 import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useSelector } from "react-redux";
-import final from "../PureFunctions/date";
-import dateHandle from "../PureFunctions/time";
 import "./progress.css";
 import RadialSeparators from "./RadialSeparators";
 const Progress = ({ number, time }) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Routes from "../Routes/Routes";
 import { createUser } from "../Actions/user";
 import { createMeasure } from "../Actions/measure";
@@ -10,6 +10,7 @@ function App() {
   const toke = JSON.parse(localStorage.getItem("token"));
   const userr = JSON.parse(localStorage.getItem("correctuser"));
   const dispatch = useDispatch();
+  // const measurments = useSelector((state) => state.measurments);
 
   const fetchUser = async () => {
     if (toke !== "") {

@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Progress from "../components/Progress";
-import final from "../PureFunctions/date";
-import dateHandle from "../PureFunctions/time";
 
 const Measurments = () => {
   const [today, setToday] = useState([]);
@@ -16,7 +14,6 @@ const Measurments = () => {
   const [lastWeek, setLastWeek] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const { id, name } = useParams();
-  const [data, setData] = useState([]);
 
   const [progress, setProgress] = React.useState(0);
   const measurments = useSelector((state) => state.measurments);
@@ -27,8 +24,6 @@ const Measurments = () => {
         const res = await measurments[0].filter(
           (d) => d.user_id === user.id && d.measure_id === Number(id)
         );
-        setData(res);
-        console.log(res);
         const sum = res.reduce((acc, item) => acc + item.number, 0);
         setProgress((sum / res.length).toFixed(2));
         setToday(
