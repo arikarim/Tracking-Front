@@ -4,11 +4,17 @@ import { Col, Row } from "react-bootstrap";
 import image from "../images/react.png";
 import "./profile.css";
 import "./pro.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 const Profile = () => {
   const userr = useSelector((state) => state.user);
+
+  const toke = JSON.parse(localStorage.getItem("token"));
+  const valid = JSON.parse(localStorage.getItem("valid"));
+  if (!toke || valid === "invalid") {
+    return <Redirect to={"/login"} />;
+  }
   return (
     <Container className="cont bg-light">
       <Row>

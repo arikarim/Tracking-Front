@@ -1,5 +1,9 @@
-nav {
+.nav {
   background: #8bbedb;
+}
+
+.toglle {
+  border: none;
 }
 
 .logout-btn {
