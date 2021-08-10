@@ -3,12 +3,15 @@ import { Card, Col, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
+import Progress from "../components/Progress";
 
 const Home = () => {
   const userr = useSelector((state) => state.user);
   const measures = useSelector((state) => state.measure);
   const measurments = useSelector((state) => state.measurments);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(measurments);
+  }, []);
 
   const toke = JSON.parse(localStorage.getItem("token"));
   const valid = JSON.parse(localStorage.getItem("valid"));
@@ -17,6 +20,7 @@ const Home = () => {
   }
   return (
     <Container className="cont">
+      <Progress />
       <Col>
         {measures[0] &&
           measures[0].map((measure) => (
