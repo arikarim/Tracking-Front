@@ -9,7 +9,7 @@ const Signup = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const history = useHistory();
   const toke = JSON.parse(localStorage.getItem('token'));
-  if (toke !== '') {
+  if (toke) {
     return <Redirect to="/" />;
   }
 
@@ -26,8 +26,16 @@ const Signup = ({ setUser }) => {
       localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
       history.push('/');
+      alert(data);
     } catch (error) {
-      console.log(error);
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Something went wrong';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
     }
   };
   return (
@@ -36,7 +44,7 @@ const Signup = ({ setUser }) => {
         onSubmit={handleSubmit}
         className="my-5 d-flex flex-column  col-10 col-md-8 mx-auto p-5"
       >
-        <label htmlFor="email" className="col-form-label my-2">
+        <label htmlFor="email" className="col-form-label my-2 d-flex flex-column">
           Email
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -47,7 +55,7 @@ const Signup = ({ setUser }) => {
             required
           />
         </label>
-        <label htmlFor="password" className="col-form-label my-2">
+        <label htmlFor="password" className="col-form-label my-2 d-flex flex-column">
           Password
           <input
             onChange={(e) => setPassword(e.target.value)}

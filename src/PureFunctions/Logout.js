@@ -14,6 +14,14 @@ const logout = async (setUser, history) => {
     localStorage.setItem('valid', JSON.stringify('invalid'));
     setUser('Not Logged');
     history.push('/login');
+    const alert = document.querySelector('.alert');
+    alert.classList.remove('d-none');
+    alert.classList.add('d-block');
+    alert.innerHTML = 'You are logged out';
+    setTimeout(() => {
+      alert.classList.add('d-none');
+      alert.classList.remove('d-block');
+    }, 3000);
   } catch (error) {
     console.log(error);
   }

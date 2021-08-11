@@ -37,10 +37,19 @@ const AddRecord = () => {
       ids.includes(Number(measureId))
       && dates.includes(moment(new Date()).format('L'))
     ) {
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Record for today already exists';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
       console.log('error');
     } else {
+      console.log(measureId);
       const measurment = {
-        measureId,
+        measure_id: measureId,
         number,
         user_id: user.id,
         date: new Date(Date.now()).toLocaleString().split(',')[0],
@@ -50,6 +59,14 @@ const AddRecord = () => {
           measurment,
         });
         history.push('/');
+        const alert = document.querySelector('.alert');
+        alert.classList.remove('d-none');
+        alert.classList.add('d-block');
+        alert.innerHTML = 'Record created successfuly';
+        setTimeout(() => {
+          alert.classList.add('d-none');
+          alert.classList.remove('d-block');
+        }, 3000);
       } catch (e) {
         console.log(e);
       }

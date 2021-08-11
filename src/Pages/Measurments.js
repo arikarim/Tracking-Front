@@ -42,7 +42,7 @@ const Measurments = () => {
                 .duration(now.diff(moment(item.created_at).format('L')))
                 .asDays()
                 .toFixed(0),
-            ) >= 1
+            ) > 1
               && Number(
                 moment
                   .duration(now.diff(moment(item.created_at).format('L')))

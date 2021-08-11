@@ -3,6 +3,7 @@ import { Card, Col, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import Progress from '../components/Progress';
 import final from '../PureFunctions/date';
 import dateHandle from '../PureFunctions/time';
@@ -45,10 +46,10 @@ const Home = () => {
               <Card className="my-2">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    {measure.name}
+                    <BsFillPeopleFill className="fs-5" />
                   </Card.Text>
                   <div className="my-auto text-decoration-none link-dark d-flex">
-                    <div className="my-auto mx-2">Rate</div>
+                    <div className="my-auto mx-2">{measure.name}</div>
                     <div className="my-auto mx-2">
                       {measurments[0]
                         && (

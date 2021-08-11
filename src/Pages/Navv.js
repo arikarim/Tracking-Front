@@ -17,7 +17,7 @@ const Navv = ({ setUser }) => {
           aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav">
-          {toke !== '' ? (
+          {toke ? (
             <Nav className="">
               <Link
                 className="text-decoration-none link-light text-center"

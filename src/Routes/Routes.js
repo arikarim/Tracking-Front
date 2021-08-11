@@ -1,3 +1,4 @@
+import { Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -17,6 +18,7 @@ const Routes = ({ user, setUser }) => (
   <>
     <Router>
       <Nav setUser={setUser} />
+      <Alert className="alert d-none my-1" variant="danger" />
       <div className="container cont">
         <Switch>
           <Route

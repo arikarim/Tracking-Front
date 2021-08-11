@@ -32,6 +32,14 @@ const Show = () => {
     try {
       await axios.delete(`http://localhost:3001/measurments/${id}`);
       history.push('/');
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Record deleted successfully';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
       setData([]);
     } catch (e) {
       console.log(e);
