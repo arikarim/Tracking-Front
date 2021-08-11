@@ -1,11 +1,11 @@
 import { Container } from '@material-ui/core';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import image from '../images/react.png';
 import './profile.css';
 import './pro.css';
-import { Link, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const userr = useSelector((state) => state.user);

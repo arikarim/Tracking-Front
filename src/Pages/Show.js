@@ -1,10 +1,11 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Card, Col, Container } from "react-bootstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Moment from "react-moment";
-import Progress from "../components/Progress";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Card, Col, Container } from 'react-bootstrap';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Moment from 'react-moment';
+import Progress from '../components/Progress';
+
 const Show = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -24,13 +25,13 @@ const Show = () => {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const onDelete = async () => {
     try {
       await axios.delete(`http://localhost:3001/measurments/${id}`);
-      history.push("/");
+      history.push('/');
       setData([]);
     } catch (e) {
       console.log(e);
@@ -55,12 +56,14 @@ const Show = () => {
                     {data.created_at}
                   </Moment>
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    {data.number} {name.charAt(0).toUpperCase() + name.slice(1)}
+                    {data.number}
+                    {' '}
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
                   </Card.Text>
                 </Card.Body>
               </Card>
             </Link>
-            <button onClick={onDelete} className="btn btn-danger my-3 w-100">
+            <button type="button" onClick={onDelete} className="btn btn-danger my-3 w-100">
               Delete
             </button>
           </div>

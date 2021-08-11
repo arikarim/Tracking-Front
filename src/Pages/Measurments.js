@@ -65,7 +65,7 @@ const Measurments = () => {
   };
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [measurments]);
 
   const toke = JSON.parse(localStorage.getItem('token'));

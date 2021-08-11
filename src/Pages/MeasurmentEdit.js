@@ -40,7 +40,7 @@ const MeasurmentEdit = () => {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [measurments[0]]);
   const toke = JSON.parse(localStorage.getItem('token'));
   const valid = JSON.parse(localStorage.getItem('valid'));

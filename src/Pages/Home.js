@@ -3,6 +3,7 @@ import { Card, Col, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Progress from '../components/Progress';
 import final from '../PureFunctions/date';
 import dateHandle from '../PureFunctions/time';
@@ -27,7 +28,7 @@ const Home = ({ setUser }) => {
     return () => {
       setUser(null);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 
   const toke = JSON.parse(localStorage.getItem('token'));
@@ -74,4 +75,7 @@ const Home = ({ setUser }) => {
   );
 };
 
+Home.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 export default Home;

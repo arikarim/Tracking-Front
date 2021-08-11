@@ -1,16 +1,17 @@
 import React from 'react';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
-function Separator(props) {
+function Separator({ turns, style }) {
   return (
     <div
       style={{
         position: 'absolute',
         height: '100%',
-        transform: `rotate(${props.turns}turn)`,
+        transform: `rotate(${turns}turn)`,
       }}
     >
-      <div style={props.style} />
+      <div style={style} />
     </div>
   );
 }
@@ -21,5 +22,9 @@ function RadialSeparators(props) {
     <Separator key={index} turns={index * turns} style={props.style} />
   ));
 }
+// Separator.propTypes = {
+//   style: React.PropTypes.object,
+//   turns: React.PropTypes.number,
+// };
 
 export default RadialSeparators;

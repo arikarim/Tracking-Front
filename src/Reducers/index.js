@@ -1,6 +1,6 @@
 // Redux store
 import { combineReducers, createStore } from 'redux';
-import { userReducer } from './user';
+import userReducer from './user';
 import { measureReducer, measurmentReducer } from './measure';
 
 const reducers = combineReducers({

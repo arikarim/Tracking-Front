@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { logout } from '../PureFunctions/Logout';
+import logout from '../PureFunctions/Logout';
 import './Nav.css';
 
 const Navv = ({ setUser }) => {
@@ -30,13 +31,13 @@ const Navv = ({ setUser }) => {
               >
                 Add Record
               </Link>
-              <div
+              <button
                 className="logout-btn text-decoration-none text-center"
                 type="submit"
-                onClick={(e) => logout(setUser, history)}
+                onClick={() => logout(setUser, history)}
               >
                 Log out
-              </div>
+              </button>
             </Nav>
           ) : (
             <Nav className="me-auto">
@@ -117,4 +118,7 @@ const Navv = ({ setUser }) => {
   );
 };
 
+Navv.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 export default Navv;

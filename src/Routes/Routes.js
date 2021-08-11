@@ -6,9 +6,9 @@ import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
 import Measurments from '../Pages/Measurments';
 import MeasurmentEdit from '../Pages/MeasurmentEdit';
-import Show from '../Pages/Show';
-import AddRecord from '../Pages/AddRecord';
-import Footer from '../Pages/Footer';
+import Show from '../Pages/Show.js';
+import AddRecord from '../Pages/AddRecord.js';
+import Footer from '../Pages/Footer.js';
 import Profile from '../Pages/Profile';
 import EditProfile from '../Pages/EditProfile';
 

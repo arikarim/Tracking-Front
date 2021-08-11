@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router';
 import './registration.css';
 
-const Signup = ({ user, setUser }) => {
+const Signup = ({ setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -37,26 +38,26 @@ const Signup = ({ user, setUser }) => {
       >
         <label htmlFor="email" className="col-form-label my-2">
           Email
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            className="my-3"
+            type="email"
+            placeholder="email"
+            required
+          />
         </label>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          className="my-3"
-          type="email"
-          placeholder="email"
-          required
-        />
         <label htmlFor="password" className="col-form-label my-2">
           Password
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            className="my-3"
+            type="password"
+            placeholder="password"
+            required
+          />
         </label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-          className="my-3"
-          type="password"
-          placeholder="password"
-          required
-        />
         <button className="my-2 btn btndark" type="submit">
           Sign up
         </button>
@@ -66,6 +67,10 @@ const Signup = ({ user, setUser }) => {
       </form>
     </div>
   );
+};
+
+Signup.propTypes = {
+  setUser: PropTypes.func.isRequired,
 };
 
 export default Signup;

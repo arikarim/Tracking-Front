@@ -40,8 +40,8 @@ const EditProfile = () => {
       });
       localStorage.setItem('correctuser', JSON.stringify(data.data));
       history.push('/');
-      console.log(data.data);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   };

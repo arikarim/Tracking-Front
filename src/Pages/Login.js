@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router';
 import './registration.css';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../Actions/user';
+import PropTypes from 'prop-types';
+import createUser from '../Actions/user';
 
 const Login = ({ setUser, user }) => {
   const [email, setEmail] = useState('');
@@ -39,28 +40,29 @@ const Login = ({ setUser, user }) => {
         onSubmit={handleSubmit}
         className="my-5 d-flex flex-column  col-10 col-md-8 mx-auto p-5"
       >
-        <label htmlFor="email" className="col-form-label my-2">
+        <label htmlFor="email1" className="col-form-label my-2">
           Email
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            name="email1"
+            id="email1"
+            className="my-3"
+            type="email"
+            placeholder="email"
+            required
+          />
         </label>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          className="my-3"
-          type="email"
-          placeholder="email"
-          required
-        />
         <label htmlFor="password" className="col-form-label my-2">
           Password
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            className="my-3"
+            type="password"
+            placeholder="password"
+            required
+          />
         </label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-          className="my-3"
-          type="password"
-          placeholder="password"
-          required
-        />
         <button className="my-2 btn btndark" type="submit">
           Log in
         </button>
@@ -72,4 +74,8 @@ const Login = ({ setUser, user }) => {
   );
 };
 
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired,
+};
 export default Login;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Routes from '../Routes/Routes';
-import { createUser } from '../Actions/user';
+import createUser from '../Actions/user';
 import { createMeasure, createMeasurments } from '../Actions/measure';
 
 function App() {
