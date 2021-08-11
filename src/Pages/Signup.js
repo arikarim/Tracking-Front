@@ -1,30 +1,30 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router";
-import "./registration.css";
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router';
+import './registration.css';
 
 const Signup = ({ user, setUser }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
-  const toke = JSON.parse(localStorage.getItem("token"));
-  if (toke !== "") {
-    return <Redirect to={"/"} />;
+  const toke = JSON.parse(localStorage.getItem('token'));
+  if (toke !== '') {
+    return <Redirect to="/" />;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:3001/users", {
+      const data = await axios.post('http://localhost:3001/users', {
         user: {
-          email: email,
-          password: password,
+          email,
+          password,
         },
       });
-      localStorage.setItem("token", JSON.stringify(data.headers.authorization));
-      localStorage.setItem("user", JSON.stringify(data.data.user));
+      localStorage.setItem('token', JSON.stringify(data.headers.authorization));
+      localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
-      history.push("/");
+      history.push('/');
     } catch (error) {
       console.log(error);
     }

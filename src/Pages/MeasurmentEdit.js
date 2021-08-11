@@ -1,8 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import {
+  Button, Col, Container, Form,
+} from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory, useParams } from 'react-router';
 
 const MeasurmentEdit = () => {
   const [data, setData] = useState([]);
@@ -22,15 +24,15 @@ const MeasurmentEdit = () => {
     e.preventDefault();
     const measurment = {
       measure_id: data.measure_id,
-      number: number,
-      date: new Date(Date.now()).toLocaleString().split(",")[0],
+      number,
+      date: new Date(Date.now()).toLocaleString().split(',')[0],
     };
     e.preventDefault();
     try {
       await axios.put(`http://localhost:3001/measurments/${id}`, {
         measurment,
       });
-      history.push("/");
+      history.push('/');
     } catch (e) {
       console.log(e);
     }
@@ -40,10 +42,10 @@ const MeasurmentEdit = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [measurments[0]]);
-  const toke = JSON.parse(localStorage.getItem("token"));
-  const valid = JSON.parse(localStorage.getItem("valid"));
-  if (!toke || valid === "invalid") {
-    return <Redirect to={"/login"} />;
+  const toke = JSON.parse(localStorage.getItem('token'));
+  const valid = JSON.parse(localStorage.getItem('valid'));
+  if (!toke || valid === 'invalid') {
+    return <Redirect to="/login" />;
   }
   return (
     <Container className="cont">

@@ -1,9 +1,9 @@
-import { Container } from "@material-ui/core";
-import axios from "axios";
-import React, { useState } from "react";
-import { Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { Container } from '@material-ui/core';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router';
 
 const EditProfile = () => {
   const userr = useSelector((state) => state.user);
@@ -13,33 +13,33 @@ const EditProfile = () => {
   const [image, setImage] = useState(null);
   const [password, setPassword] = useState(null);
   const history = useHistory();
-  const toke = JSON.parse(localStorage.getItem("token"));
-  const valid = JSON.parse(localStorage.getItem("valid"));
-  if (!toke || valid === "invalid") {
-    return <Redirect to={"/login"} />;
+  const toke = JSON.parse(localStorage.getItem('token'));
+  const valid = JSON.parse(localStorage.getItem('valid'));
+  if (!toke || valid === 'invalid') {
+    return <Redirect to="/login" />;
   }
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const body = new FormData();
-    body.append("user[name]", name);
-    body.append("user[bio]", bio);
-    body.append("user[about]", about);
-    body.append("user[current_password]", password);
+    body.append('user[name]', name);
+    body.append('user[bio]', bio);
+    body.append('user[about]', about);
+    body.append('user[current_password]', password);
     if (image) {
-      body.append("user[image]", image);
+      body.append('user[image]', image);
     }
 
     const headers = {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
       Authorization: toke,
     };
     try {
-      const data = await axios.put("http://localhost:3001/users", body, {
-        headers: headers,
+      const data = await axios.put('http://localhost:3001/users', body, {
+        headers,
       });
-      localStorage.setItem("correctuser", JSON.stringify(data.data));
-      history.push("/");
+      localStorage.setItem('correctuser', JSON.stringify(data.data));
+      history.push('/');
       console.log(data.data);
     } catch (error) {
       console.log(error);

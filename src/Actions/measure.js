@@ -1,14 +1,10 @@
 // Create measure actions
-export const createMeasure = (measure) => {
-  return {
-    type: "MEASURE",
-    measure,
-  };
-};
+export const createMeasure = (measure) => ({
+  type: 'MEASURE',
+  measure,
+});
 
-export const createMeasurments = (measurements) => {
-  return {
-    type: "MEASUREMENTS",
-    measurements,
-  };
-};
+export const createMeasurments = (measurements) => ({
+  type: 'MEASUREMENTS',
+  measurements,
+});

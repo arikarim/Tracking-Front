@@ -1,36 +1,36 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router";
-import "./registration.css";
-import { createUser } from "../Actions/user";
-import { useDispatch } from "react-redux";
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router';
+import './registration.css';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../Actions/user';
 
 const Login = ({ setUser, user }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:3001/users/sign_in", {
+      const data = await axios.post('http://localhost:3001/users/sign_in', {
         user: {
-          email: email,
-          password: password,
+          email,
+          password,
         },
       });
-      localStorage.setItem("valid", JSON.stringify("valid"));
-      localStorage.setItem("token", JSON.stringify(data.headers.authorization));
-      localStorage.setItem("user", JSON.stringify(data.data.user));
+      localStorage.setItem('valid', JSON.stringify('valid'));
+      localStorage.setItem('token', JSON.stringify(data.headers.authorization));
+      localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
-      history.push("/");
+      history.push('/');
       dispatch(createUser(data.data.user));
     } catch (error) {
       console.log(error);
     }
   };
-  if (user === "Logged") {
-    return <Redirect to={"/"} />;
+  if (user === 'Logged') {
+    return <Redirect to="/" />;
   }
 
   return (

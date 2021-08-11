@@ -1,12 +1,12 @@
-import React from "react";
-import _ from "lodash";
+import React from 'react';
+import _ from 'lodash';
 
 function Separator(props) {
   return (
     <div
       style={{
-        position: "absolute",
-        height: "100%",
+        position: 'absolute',
+        height: '100%',
         transform: `rotate(${props.turns}turn)`,
       }}
     >

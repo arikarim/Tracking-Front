@@ -1,23 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const checking = (user, history) => {
-  user === "Not_Logged" ? history.push("/login") : history.push("/");
+  user === 'Not_Logged' ? history.push('/login') : history.push('/');
 };
 
 export const logout = async (setUser, history) => {
   try {
-    const toke = JSON.parse(localStorage.getItem("token"));
-    await axios.delete("http://localhost:3001/users/sign_out", {
+    const toke = JSON.parse(localStorage.getItem('token'));
+    await axios.delete('http://localhost:3001/users/sign_out', {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: toke,
       },
     });
-    localStorage.setItem("token", JSON.stringify(""));
-    localStorage.setItem("user", JSON.stringify([]));
-    localStorage.setItem("valid", JSON.stringify("invalid"));
-    setUser("Not Logged");
-    history.push("/login");
+    localStorage.setItem('token', JSON.stringify(''));
+    localStorage.setItem('user', JSON.stringify([]));
+    localStorage.setItem('valid', JSON.stringify('invalid'));
+    setUser('Not Logged');
+    history.push('/login');
   } catch (error) {
     console.log(error);
   }

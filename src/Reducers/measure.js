@@ -2,7 +2,7 @@
 
 export const measureReducer = (state = [], action) => {
   switch (action.type) {
-    case "MEASURE":
+    case 'MEASURE':
       return [action.measure];
     default:
       return state;
@@ -11,7 +11,7 @@ export const measureReducer = (state = [], action) => {
 
 export const measurmentReducer = (state = [], action) => {
   switch (action.type) {
-    case "MEASUREMENTS":
+    case 'MEASUREMENTS':
       return [action.measurements];
     default:
       return state;

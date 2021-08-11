@@ -1,21 +1,22 @@
-import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
-import { logout } from "../PureFunctions/Logout";
-import "./Nav.css";
+import React from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
+import { logout } from '../PureFunctions/Logout';
+import './Nav.css';
+
 const Navv = ({ setUser }) => {
   const history = useHistory();
-  const toke = JSON.parse(localStorage.getItem("token"));
+  const toke = JSON.parse(localStorage.getItem('token'));
   return (
     <Navbar className="nav" expand="lg">
-      <Container fluid={true} className="">
+      <Container fluid className="">
         <h3 className="py-2 mx-auto text-white">Track.it</h3>
         <Navbar.Toggle
           className="position-absolute my-3 top-0 end-0 toglle"
           aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav">
-          {toke !== "" ? (
+          {toke !== '' ? (
             <Nav className="">
               <Link
                 className="text-decoration-none link-light text-center"
@@ -110,9 +111,9 @@ const Navv = ({ setUser }) => {
     //     //     </Link>
     //     //   </li>
 
-    //     // </ul>
-    //   )}
-    // </nav>
+  //     // </ul>
+  //   )}
+  // </nav>
   );
 };
 
