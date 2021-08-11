@@ -24,7 +24,14 @@ function App() {
         localStorage.setItem('valid', JSON.stringify('valid'));
       } catch (e) {
         localStorage.setItem('valid', JSON.stringify('invalid'));
-        console.log(e);
+        const alert = document.querySelector('.alert');
+        alert.classList.remove('d-none');
+        alert.classList.add('d-block');
+        alert.innerHTML = 'Server problem';
+        setTimeout(() => {
+          alert.classList.add('d-none');
+          alert.classList.remove('d-block');
+        }, 3000);
       }
     }
   };
@@ -35,7 +42,14 @@ function App() {
         const data = await axios.get('http://localhost:3001/measures');
         dispatch(createMeasure(data.data));
       } catch (e) {
-        console.log(e);
+        const alert = document.querySelector('.alert');
+        alert.classList.remove('d-none');
+        alert.classList.add('d-block');
+        alert.innerHTML = 'Server problem';
+        setTimeout(() => {
+          alert.classList.add('d-none');
+          alert.classList.remove('d-block');
+        }, 3000);
       }
     }
   };
@@ -46,7 +60,14 @@ function App() {
         const data = await axios.get('http://localhost:3001/measurments');
         dispatch(createMeasurments(data.data));
       } catch (e) {
-        console.log(e);
+        const alert = document.querySelector('.alert');
+        alert.classList.remove('d-none');
+        alert.classList.add('d-block');
+        alert.innerHTML = 'Server problem';
+        setTimeout(() => {
+          alert.classList.add('d-none');
+          alert.classList.remove('d-block');
+        }, 3000);
       }
     }
   };

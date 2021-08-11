@@ -19,7 +19,14 @@ const Show = () => {
       setData(data.data);
       setProgress(data.data.number);
     } catch (e) {
-      console.log(e);
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Server problem';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
     }
   };
 
@@ -42,7 +49,14 @@ const Show = () => {
       }, 3000);
       setData([]);
     } catch (e) {
-      console.log(e);
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Server problem';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
     }
   };
   return (

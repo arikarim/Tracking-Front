@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router';
 import './registration.css';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import createUser from '../Actions/user';
 import alert from '../PureFunctions/alert';
 
@@ -77,9 +78,9 @@ const Login = ({ setUser }) => {
         <button className="my-2 btn btndark" type="submit">
           Log in
         </button>
-        <a className="text-decoration-none link-dark my-2" href="/signup">
-          Sign up
-        </a>
+        <Link className="text-decoration-none link-dark" to="/signup">
+          Sign Up
+        </Link>
       </form>
     </div>
   );

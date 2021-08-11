@@ -1,4 +1,4 @@
-const alert = (data) => {
+const alertt = (data) => {
   const alert = document.querySelector('.alert');
   alert.classList.remove('d-none');
   alert.classList.add('d-block');
@@ -9,4 +9,4 @@ const alert = (data) => {
   }, 3000);
 };
 
-export default alert;
+export default alertt;

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router';
 import './registration.css';
+import { Link } from 'react-router-dom';
+import alertt from '../PureFunctions/alert';
 
 const Signup = ({ setUser }) => {
   const [email, setEmail] = useState('');
@@ -26,7 +28,7 @@ const Signup = ({ setUser }) => {
       localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
       history.push('/');
-      alert(data);
+      alertt(data);
     } catch (error) {
       const alert = document.querySelector('.alert');
       alert.classList.remove('d-none');
@@ -69,9 +71,9 @@ const Signup = ({ setUser }) => {
         <button className="my-2 btn btndark" type="submit">
           Sign up
         </button>
-        <a className="text-decoration-none link-dark my-2" href="/login">
-          Log in
-        </a>
+        <Link className="text-decoration-none link-dark" to="/login">
+          Login
+        </Link>
       </form>
     </div>
   );

@@ -25,7 +25,7 @@ const AddRecord = () => {
     const ids = [];
     const dates = [];
     const items = measurments[0].filter(
-      (item) => item.measure_id === Number(measureId),
+      (item) => item.measure_id === Number(measureId) && item.user_id === user.id,
     );
     // eslint-disable-next-line
     items.map((item) => {
@@ -45,9 +45,7 @@ const AddRecord = () => {
         alert.classList.add('d-none');
         alert.classList.remove('d-block');
       }, 3000);
-      console.log('error');
     } else {
-      console.log(measureId);
       const measurment = {
         measure_id: measureId,
         number,
@@ -68,7 +66,14 @@ const AddRecord = () => {
           alert.classList.remove('d-block');
         }, 3000);
       } catch (e) {
-        console.log(e);
+        const alert = document.querySelector('.alert');
+        alert.classList.remove('d-none');
+        alert.classList.add('d-block');
+        alert.innerHTML = 'Server problem';
+        setTimeout(() => {
+          alert.classList.add('d-none');
+          alert.classList.remove('d-block');
+        }, 3000);
       }
     }
   };

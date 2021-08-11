@@ -5,17 +5,16 @@ import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import Progress from '../components/Progress';
-import final from '../PureFunctions/date';
-import dateHandle from '../PureFunctions/time';
 
 const Home = () => {
   const measures = useSelector((state) => state.measure);
   const [progress, setProgress] = React.useState(0);
+  const user = JSON.parse(localStorage.getItem('user'));
   const measurments = useSelector((state) => state.measurments);
   const getProgress = () => {
     if (measurments[0]) {
       const res = measurments[0].filter(
-        (item) => dateHandle(item.date, final) > 31,
+        (d) => d.user_id === user.id,
       );
       const sum = res.reduce((acc, item) => acc + item.number, 0);
       setProgress(sum / res.length);
@@ -34,7 +33,7 @@ const Home = () => {
   }
   return (
     <Container className="cont">
-      <Progress number={progress} time="last month" />
+      <Progress number={Number(progress.toFixed(2))} time="last month" />
       <Col className="d-flex flex-wrap">
         {measures[0]
           && measures[0].map((measure) => (
@@ -54,8 +53,11 @@ const Home = () => {
                       {measurments[0]
                         && (
                           (measurments[0].filter(
-                            (d) => d.measure_id === measure.id,
-                          ).length
+                            (d) => d.user_id === user.id,
+                          )
+                            .filter(
+                              (d) => d.measure_id === measure.id,
+                            ).length
                             * 100)
                           / measurments[0].length
                         ).toFixed(2)}
