@@ -7,7 +7,7 @@ import { Redirect, useHistory } from 'react-router';
 
 const AddRecord = () => {
   const [number, setNumber] = useState(null);
-  const [measure_id, setMeasure_id] = useState(null);
+  const [measureId, setMeasureId] = useState(null);
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('user'));
   const measures = useSelector((state) => state.measure);
@@ -25,7 +25,7 @@ const AddRecord = () => {
     const ids = [];
     const dates = [];
     const items = measurments[0].filter(
-      (item) => item.measure_id === Number(measure_id),
+      (item) => item.measure_id === Number(measureId),
     );
     // eslint-disable-next-line
     items.map((item) => {
@@ -34,13 +34,13 @@ const AddRecord = () => {
     });
 
     if (
-      ids.includes(Number(measure_id))
+      ids.includes(Number(measureId))
       && dates.includes(moment(new Date()).format('L'))
     ) {
       console.log('error');
     } else {
       const measurment = {
-        measure_id,
+        measureId,
         number,
         user_id: user.id,
         date: new Date(Date.now()).toLocaleString().split(',')[0],
@@ -67,7 +67,7 @@ const AddRecord = () => {
         />
       </Form.Group>
       <Form.Select
-        onChange={(e) => setMeasure_id(Number(e.target.value))}
+        onChange={(e) => setMeasureId(Number(e.target.value))}
         required
       >
         <option>Choose one</option>

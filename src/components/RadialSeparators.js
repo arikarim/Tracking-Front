@@ -22,9 +22,12 @@ function RadialSeparators(props) {
     <Separator key={index} turns={index * turns} style={props.style} />
   ));
 }
-// Separator.propTypes = {
-//   style: React.PropTypes.object,
-//   turns: React.PropTypes.number,
-// };
+
+Separator.propTypes = {
+  turns: PropTypes.number.isRequired,
+  style: PropTypes.shape({
+    background: PropTypes.string,
+  }).isRequired,
+};
 
 export default RadialSeparators;

@@ -8,7 +8,6 @@ import { createMeasure, createMeasurments } from '../Actions/measure';
 function App() {
   const [user, setUser] = useState(null);
   const toke = JSON.parse(localStorage.getItem('token'));
-  const userr = JSON.parse(localStorage.getItem('correctuser'));
   const dispatch = useDispatch();
 
   const fetchUser = async () => {
@@ -46,7 +45,6 @@ function App() {
       try {
         const data = await axios.get('http://localhost:3001/measurments');
         dispatch(createMeasurments(data.data));
-        console.log('Lets dee');
       } catch (e) {
         console.log(e);
       }
@@ -61,7 +59,7 @@ function App() {
     fetchUser();
     fetchMeasure();
     // eslint-disable-next-line
-  }, [toke, userr]);
+  }, [toke, user]);
   return (
     <>
       <Routes rerun={fetchMeasurments} user={user} setUser={setUser} />

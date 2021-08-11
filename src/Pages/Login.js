@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import createUser from '../Actions/user';
 
-const Login = ({ setUser, user }) => {
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -30,8 +30,10 @@ const Login = ({ setUser, user }) => {
       console.log(error);
     }
   };
-  if (user === 'Logged') {
-    return <Redirect to="/" />;
+  const toke = JSON.parse(localStorage.getItem('token'));
+  const valid = JSON.parse(localStorage.getItem('valid'));
+  if (toke && valid === 'valid') {
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -40,7 +42,7 @@ const Login = ({ setUser, user }) => {
         onSubmit={handleSubmit}
         className="my-5 d-flex flex-column  col-10 col-md-8 mx-auto p-5"
       >
-        <label htmlFor="email1" className="col-form-label my-2">
+        <label htmlFor="email1" className="col-form-label my-2 d-flex flex-column">
           Email
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -52,7 +54,7 @@ const Login = ({ setUser, user }) => {
             required
           />
         </label>
-        <label htmlFor="password" className="col-form-label my-2">
+        <label htmlFor="password" className="col-form-label my-2 d-flex flex-column">
           Password
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -76,6 +78,5 @@ const Login = ({ setUser, user }) => {
 
 Login.propTypes = {
   setUser: PropTypes.func.isRequired,
-  user: PropTypes.string.isRequired,
 };
 export default Login;

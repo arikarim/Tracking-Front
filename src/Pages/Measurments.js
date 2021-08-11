@@ -76,7 +76,7 @@ const Measurments = () => {
   return (
     <Container className="cont">
       <h1 className="mx-auto text-center">Measurments</h1>
-      <Progress number={progress} time={name} />
+      <Progress number={Number(progress)} time={name} />
       <Col>
         {today.length > 0 && <h5>Today:</h5>}
         {today.length > 0

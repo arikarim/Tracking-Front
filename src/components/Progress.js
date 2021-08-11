@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
 import {
   buildStyles,
@@ -12,7 +13,7 @@ const Progress = ({ number, time }) => (
   <Row className="my-2 pro p-3">
     <h4 className="text-center">
       Your achivement for
-      {time}
+      {` ${time}`}
     </h4>
     <div className="mx-auto" style={{ width: 200, height: 200 }}>
       <CircularProgressbarWithChildren
@@ -37,4 +38,8 @@ const Progress = ({ number, time }) => (
   </Row>
 );
 
+Progress.propTypes = {
+  number: PropTypes.number.isRequired,
+  time: PropTypes.string.isRequired,
+};
 export default Progress;

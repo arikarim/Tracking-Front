@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../Pages/Home';
@@ -6,13 +7,13 @@ import Login from '../Pages/Login';
 import Signup from '../Pages/Signup';
 import Measurments from '../Pages/Measurments';
 import MeasurmentEdit from '../Pages/MeasurmentEdit';
-import Show from '../Pages/Show.js';
-import AddRecord from '../Pages/AddRecord.js';
-import Footer from '../Pages/Footer.js';
+import Show from '../Pages/Showw';
+import Record from '../Pages/Record';
+import Footer from '../Pages/Footerr';
 import Profile from '../Pages/Profile';
 import EditProfile from '../Pages/EditProfile';
 
-const Routes = ({ rerun, user, setUser }) => (
+const Routes = ({ user, setUser }) => (
   <>
     <Router>
       <Nav setUser={setUser} />
@@ -21,6 +22,7 @@ const Routes = ({ rerun, user, setUser }) => (
           <Route
             path="/signup"
             render={(props) => (
+              // eslint-disable-next-line
               <Signup {...props} user={user} setUser={setUser} />
             )}
           />
@@ -28,30 +30,35 @@ const Routes = ({ rerun, user, setUser }) => (
             exact
             path="/login"
             render={(props) => (
+              // eslint-disable-next-line
               <Login {...props} user={user} setUser={setUser} />
             )}
           />
           <Route
             path="/addrecord"
-            render={(props) => <AddRecord {...props} />}
+            component={Record}
           />
           <Route
             path="/:name/edit/:id"
-            render={(props) => <MeasurmentEdit {...props} />}
+            component={MeasurmentEdit}
           />
           <Route
             path="/:name/show/:id"
-            render={(props) => <Show {...props} />}
+            component={Show}
           />
           <Route
             path="/:name/:id"
-            render={(props) => <Measurments {...props} />}
+            component={Measurments}
           />
           <Route path="/editprofile" component={EditProfile} />
-          <Route path="/profile" render={(props) => <Profile {...props} />} />
+          <Route
+            path="/profile"
+          // eslint-disable-next-line
+           render={(props) => <Profile {...props} />} />
           <Route
             path="/"
-            render={(props) => <Home {...props} setUser={setUser} />}
+            // eslint-disable-next-line
+            render={(props) => <Home {...props} />}
           />
         </Switch>
         <Footer />
@@ -59,5 +66,14 @@ const Routes = ({ rerun, user, setUser }) => (
     </Router>
   </>
 );
+
+Routes.defaultProps = {
+  user: null,
+};
+
+Routes.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any),
+  setUser: PropTypes.func.isRequired,
+};
 
 export default Routes;
