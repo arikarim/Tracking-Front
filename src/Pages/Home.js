@@ -23,11 +23,13 @@ const Home = () => {
       setProgress(sum / res.length);
     }
   };
+  const dependency = measurments[0]
+    ? measurments[0].reduce((acc, item) => acc + item.number, 0) : 0;
 
   useEffect(() => {
     getProgress();
     // eslint-disable-next-line
-  }, []);
+  }, [dependency]);
 
   const toke = JSON.parse(localStorage.getItem('token'));
   const valid = JSON.parse(localStorage.getItem('valid'));
@@ -35,7 +37,7 @@ const Home = () => {
     return <Redirect to="/login" />;
   }
   return (
-    <Container className="cont">
+    <Container fluid className="cont">
       <Progress number={progress === null ? 0 : progress.toFixed(2)} time="last month" />
       <Col className="d-flex flex-wrap">
         {measures[0]
@@ -45,8 +47,8 @@ const Home = () => {
               key={measures[0][0].id}
               to={`/${measures[0][0].name}/${measures[0][0].id}`}
             >
-              <Card className="my-2">
-                <Card.Body className="d-flex justify-content-between">
+              <Card className="my-2 home-cards">
+                <Card.Body className="d-flex px-0 justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <AiOutlineTwitter className="fs-1" />
                   </Card.Text>
@@ -78,7 +80,7 @@ const Home = () => {
               key={measures[0][1].id}
               to={`/${measures[0][1].name}/${measures[0][1].id}`}
             >
-              <Card className="my-2">
+              <Card className="my-2 home-cards">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <BsCodeSlash className="fs-1" />
@@ -111,7 +113,7 @@ const Home = () => {
               key={measures[0][2].id}
               to={`/${measures[0][2].name}/${measures[0][2].id}`}
             >
-              <Card className="my-2">
+              <Card className="my-2 home-cards">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <BsFillPeopleFill className="fs-1" />
@@ -145,7 +147,7 @@ const Home = () => {
               key={measures[0][3].id}
               to={`/${measures[0][3].name}/${measures[0][3].id}`}
             >
-              <Card className="my-2">
+              <Card className="my-2 home-cards">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <GoProject className="fs-1" />
@@ -179,7 +181,7 @@ const Home = () => {
               key={measures[0][4].id}
               to={`/${measures[0][4].name}/${measures[0][4].id}`}
             >
-              <Card className="my-2">
+              <Card className="my-2 home-cards">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <RiArticleFill className="fs-1" />
@@ -213,7 +215,7 @@ const Home = () => {
               key={measures[0][5].id}
               to={`/${measures[0][5].name}/${measures[0][5].id}`}
             >
-              <Card className="my-2">
+              <Card className="my-2 home-cards">
                 <Card.Body className="d-flex justify-content-between">
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     <RiShoppingBagFill className="fs-1" />

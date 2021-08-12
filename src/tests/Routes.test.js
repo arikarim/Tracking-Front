@@ -15,7 +15,7 @@ describe('Snapshots', () => {
     const jsx = (
       <Provider store={store}>
         <BrowserRouter>
-          <Routes/>
+          <Routes />
         </BrowserRouter>
       </Provider>
     );

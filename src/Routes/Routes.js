@@ -19,7 +19,7 @@ const Routes = ({ user, setUser }) => (
     <Router>
       <Nav setUser={setUser} />
       <Alert className="alert d-none my-1" variant="danger" />
-      <div className="container cont">
+      <div className="cont">
         <Switch>
           <Route
             path="/signup"

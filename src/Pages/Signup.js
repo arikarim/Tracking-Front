@@ -79,6 +79,10 @@ const Signup = ({ setUser }) => {
   );
 };
 
+Signup.defaultProps = {
+  setUser: () => {},
+};
+
 Signup.propTypes = {
   setUser: PropTypes.func,
 };

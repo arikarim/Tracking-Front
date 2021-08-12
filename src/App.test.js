@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import App from './components/App';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import App from './components/App';
 import createTestStore from './Reducers/index';
 
 describe('Snapshots', () => {
@@ -16,7 +16,8 @@ describe('Snapshots', () => {
     render(
       <Provider store={store}>
         <App />
-      </Provider>,);
+      </Provider>,
+    );
     const linkElement = screen.getByText('Track.it');
     expect(linkElement).toBeInTheDocument();
   });

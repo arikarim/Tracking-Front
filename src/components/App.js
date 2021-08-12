@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Routes from '../Routes/Routes';
 import createUser from '../Actions/user';
 import { createMeasure, createMeasurments } from '../Actions/measure';
@@ -9,6 +9,7 @@ function App() {
   const [user, setUser] = useState(null);
   const toke = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
+  const measurments = useSelector((state) => state.measurments);
 
   const fetchUser = async () => {
     if (toke !== '') {
@@ -71,16 +72,17 @@ function App() {
       }
     }
   };
+  fetchMeasurments();
   useEffect(() => {
     fetchMeasurments();
     // eslint-disable-next-line
-  }, [user]);
+  }, [measurments[0] && measurments[0].length]);
 
   useEffect(() => {
     fetchUser();
     fetchMeasure();
     // eslint-disable-next-line
-  }, [toke, user]);
+  });
   return (
     <>
       <Routes rerun={fetchMeasurments} user={user} setUser={setUser} />
