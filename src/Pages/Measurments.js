@@ -37,25 +37,23 @@ const Measurments = () => {
         );
         setYesterday(
           res.filter(
-            (item) => Number(
+            (item) => Math.floor(Number(
               moment
                 .duration(now.diff(moment(item.created_at).format('L')))
-                .asDays()
-                .toFixed(0),
-            ) > 1
-              && Number(
+                .asDays(),
+            )) >= 1
+              && Math.floor(Number(
                 moment
                   .duration(now.diff(moment(item.created_at).format('L')))
-                  .asDays()
-                  .toFixed(0),
-              ) < 2,
+                  .asDays(),
+              )) < 2,
           ),
         );
         setLastWeek(
           res.filter(
-            (item) => Number(
-              moment.duration(now.diff(item.created_at)).asDays().toFixed(0),
-            ) > 2,
+            (item) => Math.floor(Number(
+              moment.duration(now.diff(item.created_at)).asDays(),
+            )) > 2,
           ),
         );
       } catch (e) {
@@ -102,7 +100,7 @@ const Measurments = () => {
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {m.number}
                     {' '}
-                    Interviews
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -125,7 +123,7 @@ const Measurments = () => {
                   <Card.Text className="my-auto text-decoration-none link-dark">
                     {m.number}
                     {' '}
-                    Interviews
+                    {name.charAt(0).toUpperCase() + name.slice(1)}
                   </Card.Text>
                 </Card.Body>
               </Card>

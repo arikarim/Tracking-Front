@@ -80,7 +80,7 @@ const Signup = ({ setUser }) => {
 };
 
 Signup.propTypes = {
-  setUser: PropTypes.func.isRequired,
+  setUser: PropTypes.func,
 };
 
 export default Signup;
