@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, Col, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsCodeSlash, BsFillPeopleFill } from 'react-icons/bs';
 import { AiOutlineTwitter } from 'react-icons/ai';
@@ -12,6 +12,7 @@ import Progress from '../components/Progress';
 const Home = () => {
   const measures = useSelector((state) => state.measure);
   const [progress, setProgress] = React.useState(null);
+  const history = useHistory();
   const user = JSON.parse(localStorage.getItem('user'));
   const measurments = useSelector((state) => state.measurments);
   const getProgress = () => {
@@ -33,8 +34,8 @@ const Home = () => {
 
   const toke = JSON.parse(localStorage.getItem('token'));
   const valid = JSON.parse(localStorage.getItem('valid'));
-  if (!toke || valid === 'invalid') {
-    return <Redirect to="/login" />;
+  if (toke === '' || valid === 'invalid') {
+    history.push('/login');
   }
   return (
     <Container fluid className="cont">
