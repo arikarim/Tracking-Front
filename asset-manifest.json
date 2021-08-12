@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Tracking-Front/static/css/main.04b0c64f.chunk.css",
-    "main.js": "/Tracking-Front/static/js/main.396cd807.chunk.js",
-    "main.js.map": "/Tracking-Front/static/js/main.396cd807.chunk.js.map",
+    "main.css": "/Tracking-Front/static/css/main.65a39fc4.chunk.css",
+    "main.js": "/Tracking-Front/static/js/main.19892275.chunk.js",
+    "main.js.map": "/Tracking-Front/static/js/main.19892275.chunk.js.map",
     "runtime-main.js": "/Tracking-Front/static/js/runtime-main.ae731500.js",
     "runtime-main.js.map": "/Tracking-Front/static/js/runtime-main.ae731500.js.map",
     "static/css/2.6c0f60ba.chunk.css": "/Tracking-Front/static/css/2.6c0f60ba.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.c662f99a.chunk.js.map": "/Tracking-Front/static/js/3.c662f99a.chunk.js.map",
     "index.html": "/Tracking-Front/index.html",
     "static/css/2.6c0f60ba.chunk.css.map": "/Tracking-Front/static/css/2.6c0f60ba.chunk.css.map",
-    "static/css/main.04b0c64f.chunk.css.map": "/Tracking-Front/static/css/main.04b0c64f.chunk.css.map",
+    "static/css/main.65a39fc4.chunk.css.map": "/Tracking-Front/static/css/main.65a39fc4.chunk.css.map",
     "static/js/2.2d233b5c.chunk.js.LICENSE.txt": "/Tracking-Front/static/js/2.2d233b5c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ae731500.js",
     "static/css/2.6c0f60ba.chunk.css",
     "static/js/2.2d233b5c.chunk.js",
-    "static/css/main.04b0c64f.chunk.css",
-    "static/js/main.396cd807.chunk.js"
+    "static/css/main.65a39fc4.chunk.css",
+    "static/js/main.19892275.chunk.js"
   ]
 }
