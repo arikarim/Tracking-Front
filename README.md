@@ -5,7 +5,7 @@
   <h3 align="center">Progress Dev</h3>
 
   <p align="center">
-This is prepared Progress Dev application for tracking daily activities.
+This is Progress Dev application for tracking daily activities.
   </p>
 </p
 
