@@ -15,7 +15,7 @@ const Show = () => {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get(`http://localhost:3001/measurments/${id}`);
+      const data = await axios.get(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
       setData(data.data);
       setProgress(data.data.number);
     } catch (e) {
@@ -37,7 +37,7 @@ const Show = () => {
 
   const onDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3001/measurments/${id}`);
+      await axios.delete(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
       history.push('/');
       const alert = document.querySelector('.alert');
       alert.classList.remove('d-none');

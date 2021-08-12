@@ -29,7 +29,7 @@ const MeasurmentEdit = () => {
     };
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3001/measurments/${id}`, {
+      await axios.put(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`, {
         measurment,
       });
       history.push('/');

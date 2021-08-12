@@ -39,7 +39,8 @@ const Progress = ({ number, time }) => (
 );
 
 Progress.propTypes = {
-  number: PropTypes.number.isRequired,
+  // eslint-disable-next-line
+  number: PropTypes.any.isRequired,
   time: PropTypes.string.isRequired,
 };
 export default Progress;

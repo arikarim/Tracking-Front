@@ -15,7 +15,7 @@ const Measurments = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const { id, name } = useParams();
 
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(null);
   const measurments = useSelector((state) => state.measurments);
   const now = moment(new Date());
   const fetchData = async () => {
@@ -25,7 +25,7 @@ const Measurments = () => {
           (d) => d.user_id === user.id && d.measure_id === Number(id),
         );
         const sum = res.reduce((acc, item) => acc + item.number, 0);
-        setProgress((sum / res.length).toFixed(2));
+        setProgress((sum / res.length).toFixed(2) !== 'NaN' ? (sum / res.length).toFixed(2) : 0);
         setToday(
           res.filter(
             (item) => Number(
@@ -83,7 +83,7 @@ const Measurments = () => {
   return (
     <Container className="cont">
       <h1 className="mx-auto text-center">Measurments</h1>
-      <Progress number={Number(progress)} time={name} />
+      <Progress number={progress === null ? 0 : progress} time={name} />
       <Col>
         {today.length > 0 && <h5>Today:</h5>}
         {today.length > 0

@@ -53,7 +53,7 @@ const AddRecord = () => {
         date: new Date(Date.now()).toLocaleString().split(',')[0],
       };
       try {
-        await axios.post('http://localhost:3001/measurments', {
+        await axios.post('https://cryptic-falls-25172.herokuapp.com/measurments', {
           measurment,
         });
         history.push('/');

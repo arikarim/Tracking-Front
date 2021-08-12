@@ -18,7 +18,7 @@ const Signup = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post('http://localhost:3001/users', {
+      const data = await axios.post('https://cryptic-falls-25172.herokuapp.com/users', {
         user: {
           email,
           password,

@@ -3,7 +3,7 @@ import axios from 'axios';
 const logout = async (history) => {
   try {
     const toke = JSON.parse(localStorage.getItem('token'));
-    await axios.delete('http://localhost:3001/users/sign_out', {
+    await axios.delete('https://cryptic-falls-25172.herokuapp.com/users/sign_out', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: toke,

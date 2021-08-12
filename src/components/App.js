@@ -13,7 +13,7 @@ function App() {
   const fetchUser = async () => {
     if (toke !== '') {
       try {
-        const data = await axios.get('http://localhost:3001/member', {
+        const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/member', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: toke,
@@ -39,7 +39,7 @@ function App() {
   const fetchMeasure = async () => {
     if (toke !== '') {
       try {
-        const data = await axios.get('http://localhost:3001/measures');
+        const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measures');
         dispatch(createMeasure(data.data));
       } catch (e) {
         const alert = document.querySelector('.alert');
@@ -57,7 +57,7 @@ function App() {
   const fetchMeasurments = async () => {
     if (toke !== '') {
       try {
-        const data = await axios.get('http://localhost:3001/measurments');
+        const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measurments');
         dispatch(createMeasurments(data.data));
       } catch (e) {
         const alert = document.querySelector('.alert');
