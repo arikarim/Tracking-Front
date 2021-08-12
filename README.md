@@ -1,23 +1,25 @@
-# React-Rails Authentication Front-End
+# Progress Dev
 
 <p align="center">
     <img src="src/images/react.png" alt="Logo" width="150" height="100">
-  <h3 align="center">React-Rails --> [React]</h3>
+  <h3 align="center">Progress Dev</h3>
 
   <p align="center">
-This is prepared React authentication `part of 
+This is prepared Progress Dev application for tracking daily activities.
   </p>
 </p
 
 ## Screenshots of the app.
 
-![image](./src/images/screen.png)
+![image](./src/images/s1.png)
 
-Note: This demo of this project combined with [Rails-back](https://github.com/arikarim/React-Rails-Back-End).
+![image](./src/images/s2.png)
+
+Note: This demo of this project combined with [Rails-back](https://github.com/arikarim/Angel).
 And also note that the live demo may not work well on github pages as react-router have some problems on reloading.
 to solve thisb you can upload it to heroku or any other hosts.
 
-[Live Demo Link](http://arikarim.me/Rails-React-Front-end/)
+[Live Demo Link](http://arikarim.me/Tracking-Front/)
 
 ## Built With
 
@@ -49,7 +51,7 @@ node should be installed in your machine.
 
 **Step 2 Rails Part**<br>
 
-In order to use this project you should have the back end prepared, I will put the link to the Rails back-end [Here](https://github.com/arikarim/React-Rails-Back-End) and all you have to to is follow these simple :
+In order to use this project you should have the back end prepared, I will put the link to the Rails back-end [Here](https://github.com/arikarim/Angel) and all you have to to is follow these simple :
 
 - Clone the Rails repo and cd inside the project.
 
