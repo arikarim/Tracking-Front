@@ -35,11 +35,19 @@ const EditProfile = () => {
       Authorization: toke,
     };
     try {
-      const data = await axios.put('http://localhost:3001/users', body, {
+      const data = await axios.put('https://cryptic-falls-25172.herokuapp.com/users', body, {
         headers,
       });
       localStorage.setItem('correctuser', JSON.stringify(data.data));
       history.push('/');
+      const alert = document.querySelector('.alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('d-block');
+      alert.innerHTML = 'Profile updated';
+      setTimeout(() => {
+        alert.classList.add('d-none');
+        alert.classList.remove('d-block');
+      }, 3000);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

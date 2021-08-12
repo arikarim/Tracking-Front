@@ -29,12 +29,12 @@ const Profile = () => {
             }
             alt="avatar"
           />
-          <h1 className="text-dark text-center">{userr && userr.name}</h1>
+          <h1 className="text-dark text-center">{userr.name !== 'null' ? userr.name : 'Stranger'}</h1>
           <p className=" text-center">
-            {(userr && userr.bio) || 'Not available'}
+            {userr.bio !== 'null' ? userr.bio : 'Not available'}
           </p>
           <p className=" text-center">
-            {(userr && userr.about) || 'Not available'}
+            {userr.about !== 'null' ? userr.about : 'Not available'}
           </p>
           <Link className="btn btn-light" to="/editprofile">
             Edit profile

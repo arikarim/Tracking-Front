@@ -79,10 +79,13 @@ function App() {
   }, [measurments[0] && measurments[0].length]);
 
   useEffect(() => {
-    fetchUser();
     fetchMeasure();
     // eslint-disable-next-line
   });
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
   return (
     <>
       <Routes rerun={fetchMeasurments} user={user} setUser={setUser} />
