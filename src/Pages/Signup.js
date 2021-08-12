@@ -41,7 +41,7 @@ const Signup = ({ setUser }) => {
     }
   };
   return (
-    <div className="signup-div">
+    <div className="signup-div cont">
       <form
         onSubmit={handleSubmit}
         className="my-5 d-flex flex-column  col-10 col-md-8 mx-auto p-5"
