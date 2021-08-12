@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router';
-import './registration.css';
+import './Styles/registration.css';
 import { Link } from 'react-router-dom';
 import alertt from '../PureFunctions/alert';
 

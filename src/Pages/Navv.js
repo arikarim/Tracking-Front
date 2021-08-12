@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import logout from '../PureFunctions/Logout';
-import './Nav.css';
+import './Styles/Nav.css';
 
 const Navv = () => {
   const history = useHistory();
