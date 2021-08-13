@@ -10,7 +10,7 @@ import './progress.css';
 import RadialSeparators from './RadialSeparators';
 
 const Progress = ({ number, time }) => (
-  <Row className="my-2 pro p-3">
+  <Row className="pro p-3">
     <h4 className="text-center">
       Your achivement for
       {` ${time}`}
