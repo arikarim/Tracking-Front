@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import createUser from '../Actions/user';
-import alert from '../PureFunctions/alert';
+import alertt from '../PureFunctions/alert';
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState('');
@@ -27,17 +27,10 @@ const Login = ({ setUser }) => {
       localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
       history.push('/');
-      alert(data);
+      alert('Logged in successfully');
       dispatch(createUser(data.data.user));
     } catch (error) {
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Something went wrong';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Something went wrong');
     }
   };
   const toke = JSON.parse(localStorage.getItem('token'));

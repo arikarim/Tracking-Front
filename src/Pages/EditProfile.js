@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
+import alertt from '../PureFunctions/alert';
 
 const EditProfile = () => {
   const userr = useSelector((state) => state.user);
@@ -40,14 +41,7 @@ const EditProfile = () => {
       });
       localStorage.setItem('correctuser', JSON.stringify(data.data));
       history.push('/');
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Profile updated';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Profile updated');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

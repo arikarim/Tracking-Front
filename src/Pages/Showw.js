@@ -5,6 +5,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Moment from 'react-moment';
 import Progress from '../components/Progress';
+import alertt from '../PureFunctions/alert';
 
 const Show = () => {
   const [data, setData] = useState([]);
@@ -39,24 +40,10 @@ const Show = () => {
     try {
       await axios.delete(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
       history.push('/');
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Record deleted successfully';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Record deleted successfully');
       setData([]);
     } catch (e) {
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Server problem';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Server problem');
     }
   };
   return (

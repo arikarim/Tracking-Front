@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
+import alertt from '../PureFunctions/alert';
 
 const AddRecord = () => {
   const [number, setNumber] = useState(null);
@@ -57,23 +58,9 @@ const AddRecord = () => {
           measurment,
         });
         history.push('/');
-        const alert = document.querySelector('.alert');
-        alert.classList.remove('d-none');
-        alert.classList.add('d-block');
-        alert.innerHTML = 'Record created successfuly';
-        setTimeout(() => {
-          alert.classList.add('d-none');
-          alert.classList.remove('d-block');
-        }, 3000);
+        alertt('Record created successfuly');
       } catch (e) {
-        const alert = document.querySelector('.alert');
-        alert.classList.remove('d-none');
-        alert.classList.add('d-block');
-        alert.innerHTML = 'Server problem';
-        setTimeout(() => {
-          alert.classList.add('d-none');
-          alert.classList.remove('d-block');
-        }, 3000);
+        alertt('Server problem');
       }
     }
   };

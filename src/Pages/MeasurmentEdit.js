@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router';
+import alertt from '../PureFunctions/alert';
 
 const MeasurmentEdit = () => {
   const [data, setData] = useState([]);
@@ -33,23 +34,9 @@ const MeasurmentEdit = () => {
         measurment,
       });
       history.push('/');
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Record edited successfully';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Record edited successfully');
     } catch (e) {
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Server problem';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
+      alertt('Server problem');
     }
   };
 
