@@ -27,7 +27,7 @@ const Login = ({ setUser }) => {
       localStorage.setItem('user', JSON.stringify(data.data.user));
       setUser(data.data.user);
       history.push('/');
-      alert('Logged in successfully');
+      alertt('Logged in successfully');
       dispatch(createUser(data.data.user));
     } catch (error) {
       alertt('Something went wrong');

@@ -10,39 +10,39 @@ function App() {
   const [user, setUser] = useState(null);
   const toke = JSON.parse(localStorage.getItem('token'));
   const dispatch = useDispatch();
-  const measurments = useSelector((state) => state.measurments);
-
-  const fetchMeasure = async () => {
-    if (toke !== '') {
-      try {
-        const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measures');
-        dispatch(createMeasure(data.data));
-      } catch (e) {
-        alertt('Server problem');
-      }
-    }
-  };
+  const count = useSelector((state) => state.count);
+  // const measurments = useSelector((state) => state.measurments);
 
   const fetchMeasurments = async () => {
     if (toke !== '') {
       try {
         const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measurments');
         dispatch(createMeasurments(data.data));
+        console.log(data.data);
       } catch (e) {
         alertt('Server problem');
       }
     }
   };
-  fetchMeasurments();
   useEffect(() => {
     fetchMeasurments();
-    // eslint-disable-next-line
-  }, [measurments[0] && measurments[0].length]);
+    console.log(count);
+  }, [count]);
 
   useEffect(() => {
+    const fetchMeasure = async () => {
+      if (toke !== '') {
+        try {
+          const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measures');
+          dispatch(createMeasure(data.data));
+        } catch (e) {
+          alertt('Server problem');
+        }
+      }
+    };
+
     fetchMeasure();
-    // eslint-disable-next-line
-  });
+  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -56,7 +56,6 @@ function App() {
           });
           localStorage.setItem('correctuser', JSON.stringify(data.data.user));
           dispatch(createUser(data.data.user));
-          console.log(data.data.user);
           localStorage.setItem('valid', JSON.stringify('valid'));
         } catch (e) {
           localStorage.setItem('valid', JSON.stringify('invalid'));
@@ -69,7 +68,7 @@ function App() {
   }, []);
   return (
     <>
-      <Routes rerun={fetchMeasurments} user={user} setUser={setUser} />
+      <Routes user={user} setUser={setUser} />
     </>
   );
 }

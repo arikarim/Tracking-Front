@@ -1,4 +1,5 @@
 import axios from 'axios';
+import alertt from './alert';
 
 const logout = async (history) => {
   try {
@@ -13,14 +14,7 @@ const logout = async (history) => {
     localStorage.setItem('user', JSON.stringify([]));
     localStorage.setItem('valid', JSON.stringify('invalid'));
     history.push('/login');
-    const alert = document.querySelector('.alert');
-    alert.classList.remove('d-none');
-    alert.classList.add('d-block');
-    alert.innerHTML = 'You are logged out';
-    setTimeout(() => {
-      alert.classList.add('d-none');
-      alert.classList.remove('d-block');
-    }, 3000);
+    alertt('You are logged out');
   } catch (error) {
     const alert = document.querySelector('.alert');
     alert.classList.remove('d-none');

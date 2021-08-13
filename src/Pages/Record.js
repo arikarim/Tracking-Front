@@ -2,14 +2,17 @@ import axios from 'axios';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router';
 import alertt from '../PureFunctions/alert';
+import increment from '../Actions/count';
 
 const AddRecord = () => {
   const [number, setNumber] = useState(null);
   const [measureId, setMeasureId] = useState(null);
   const history = useHistory();
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.count);
   const user = JSON.parse(localStorage.getItem('user'));
   const measures = useSelector((state) => state.measure);
   const measurments = useSelector((state) => state.measurments);
@@ -47,16 +50,18 @@ const AddRecord = () => {
         alert.classList.remove('d-block');
       }, 3000);
     } else {
+      const now = moment(new Date());
       const measurment = {
         measure_id: measureId,
         number,
         user_id: user.id,
-        date: new Date(Date.now()).toLocaleString().split(',')[0],
+        date: now,
       };
       try {
         await axios.post('https://cryptic-falls-25172.herokuapp.com/measurments', {
           measurment,
         });
+        dispatch(increment(count));
         history.push('/');
         alertt('Record created successfuly');
       } catch (e) {

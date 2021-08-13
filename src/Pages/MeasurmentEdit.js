@@ -1,10 +1,12 @@
 import axios from 'axios';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import {
   Button, Col, Container, Form,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router';
+import increment from '../Actions/count';
 import alertt from '../PureFunctions/alert';
 
 const MeasurmentEdit = () => {
@@ -14,6 +16,8 @@ const MeasurmentEdit = () => {
   const { id } = useParams();
   const { name } = useParams();
   const measurments = useSelector((state) => state.measurments);
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.count);
 
   const fetchData = async () => {
     if (measurments[0] !== undefined) {
@@ -23,16 +27,18 @@ const MeasurmentEdit = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const now = moment(new Date());
     const measurment = {
       measure_id: data.measure_id,
       number,
-      date: new Date(Date.now()).toLocaleString().split(',')[0],
+      date: now,
     };
     e.preventDefault();
     try {
       await axios.put(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`, {
         measurment,
       });
+      dispatch(increment(count));
       history.push('/');
       alertt('Record edited successfully');
     } catch (e) {

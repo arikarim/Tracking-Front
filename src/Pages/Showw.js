@@ -1,18 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, Col, Container } from 'react-bootstrap';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Moment from 'react-moment';
 import Progress from '../components/Progress';
 import alertt from '../PureFunctions/alert';
+import increment from '../Actions/count';
 
 const Show = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const { name } = useParams();
   const history = useHistory();
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = useState(0);
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.count);
 
   const fetchData = async () => {
     try {
@@ -39,6 +43,7 @@ const Show = () => {
   const onDelete = async () => {
     try {
       await axios.delete(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
+      dispatch(increment(count));
       history.push('/');
       alertt('Record deleted successfully');
       setData([]);

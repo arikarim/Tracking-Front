@@ -36,3 +36,9 @@ code {
 .home-cards {
   height: 100px;
 }
+
+.user-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
