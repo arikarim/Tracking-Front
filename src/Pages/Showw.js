@@ -56,7 +56,7 @@ const Show = () => {
             <Link
               className="my-auto text-decoration-none"
               key={data.id}
-              to={`/${data.name}/edit/${data.id}`}
+              to={`/${name}/edit/${data.id}`}
             >
               <Card>
                 <Card.Body className="d-flex justify-content-between">
