@@ -32,6 +32,25 @@ const Home = () => {
     // eslint-disable-next-line
   }, [dependency]);
 
+  const icons = (n) => {
+    switch (n) {
+      case 1:
+        return <AiOutlineTwitter className="fs-1" />;
+      case 2:
+        return <BsCodeSlash className="fs-1" />;
+      case 3:
+        return <BsFillPeopleFill className="fs-1" />;
+      case 4:
+        return <GoProject className="fs-1" />;
+      case 5:
+        return <RiArticleFill className="fs-1" />;
+      case 6:
+        return <RiShoppingBagFill className="fs-1" />;
+      default:
+        return <BsFillPeopleFill className="fs-1" />;
+    }
+  };
+
   const toke = JSON.parse(localStorage.getItem('token'));
   const valid = JSON.parse(localStorage.getItem('valid'));
   if (toke === '' || valid === 'invalid') {
@@ -42,19 +61,19 @@ const Home = () => {
       <Progress number={progress === null ? 0 : progress.toFixed(2)} time="last month" />
       <Col className="d-flex flex-wrap">
         {measures[0]
-          && (
+          && measures[0].map((d) => (
             <Link
               className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][0].id}
-              to={`/${measures[0][0].name}/${measures[0][0].id}`}
+              key={d.id}
+              to={`/${d.name}/${d.id}`}
             >
               <Card className="my-2 home-cards">
-                <Card.Body className="d-flex px-0 justify-content-between">
+                <Card.Body className="d-flex px-0 justify-content-around">
                   <Card.Text className="my-auto text-decoration-none link-dark">
-                    <AiOutlineTwitter className="fs-1" />
+                    {icons(d.id)}
                   </Card.Text>
                   <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][0].name}</div>
+                    <div className="my-auto mx-2">{d.name}</div>
                     <div className="my-auto mx-2">
                       {measurments[0]
                         && (
@@ -73,175 +92,7 @@ const Home = () => {
                 </Card.Body>
               </Card>
             </Link>
-          )}
-        {measures[0]
-          && (
-            <Link
-              className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][1].id}
-              to={`/${measures[0][1].name}/${measures[0][1].id}`}
-            >
-              <Card className="my-2 home-cards">
-                <Card.Body className="d-flex justify-content-between">
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    <BsCodeSlash className="fs-1" />
-                  </Card.Text>
-                  <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][1].name}</div>
-                    <div className="my-auto mx-2">
-                      {measurments[0]
-                        && (
-                          (measurments[0].filter(
-                            (d) => d.user_id === user.id,
-                          )
-                            .filter(
-                              (d) => d.measure_id === measures[0][1].id,
-                            ).length
-                            * 100)
-                          / measurments[0].length
-                        ).toFixed(2)}
-                      %
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          )}
-        {measures[0]
-          && (
-            <Link
-              className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][2].id}
-              to={`/${measures[0][2].name}/${measures[0][2].id}`}
-            >
-              <Card className="my-2 home-cards">
-                <Card.Body className="d-flex justify-content-between">
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    <BsFillPeopleFill className="fs-1" />
-                  </Card.Text>
-                  <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][2].name}</div>
-                    <div className="my-auto mx-2">
-                      {measurments[0]
-                        && (
-                          (measurments[0].filter(
-                            (d) => d.user_id === user.id,
-                          )
-                            .filter(
-                              (d) => d.measure_id === measures[0][2].id,
-                            ).length
-                            * 100)
-                          / measurments[0].length
-                        ).toFixed(2)}
-                      %
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          )}
-
-        {measures[0]
-          && (
-            <Link
-              className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][3].id}
-              to={`/${measures[0][3].name}/${measures[0][3].id}`}
-            >
-              <Card className="my-2 home-cards">
-                <Card.Body className="d-flex justify-content-between">
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    <GoProject className="fs-1" />
-                  </Card.Text>
-                  <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][3].name}</div>
-                    <div className="my-auto mx-2">
-                      {measurments[0]
-                        && (
-                          (measurments[0].filter(
-                            (d) => d.user_id === user.id,
-                          )
-                            .filter(
-                              (d) => d.measure_id === measures[0][3].id,
-                            ).length
-                            * 100)
-                          / measurments[0].length
-                        ).toFixed(2)}
-                      %
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          )}
-
-        {measures[0]
-          && (
-            <Link
-              className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][4].id}
-              to={`/${measures[0][4].name}/${measures[0][4].id}`}
-            >
-              <Card className="my-2 home-cards">
-                <Card.Body className="d-flex justify-content-between">
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    <RiArticleFill className="fs-1" />
-                  </Card.Text>
-                  <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][4].name}</div>
-                    <div className="my-auto mx-2">
-                      {measurments[0]
-                        && (
-                          (measurments[0].filter(
-                            (d) => d.user_id === user.id,
-                          )
-                            .filter(
-                              (d) => d.measure_id === measures[0][4].id,
-                            ).length
-                            * 100)
-                          / measurments[0].length
-                        ).toFixed(2)}
-                      %
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          )}
-
-        {measures[0]
-          && (
-            <Link
-              className="my-auto px-2 col-6 text-decoration-none link-dark"
-              key={measures[0][5].id}
-              to={`/${measures[0][5].name}/${measures[0][5].id}`}
-            >
-              <Card className="my-2 home-cards">
-                <Card.Body className="d-flex justify-content-between">
-                  <Card.Text className="my-auto text-decoration-none link-dark">
-                    <RiShoppingBagFill className="fs-1" />
-                  </Card.Text>
-                  <div className="my-auto text-decoration-none d-flex flex-column link-dark d-flex">
-                    <div className="my-auto mx-2">{measures[0][5].name}</div>
-                    <div className="my-auto mx-2">
-                      {measurments[0]
-                        && (
-                          (measurments[0].filter(
-                            (d) => d.user_id === user.id,
-                          )
-                            .filter(
-                              (d) => d.measure_id === measures[0][5].id,
-                            ).length
-                            * 100)
-                          / measurments[0].length
-                        ).toFixed(2)}
-                      %
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Link>
-          )}
+          ))}
       </Col>
     </Container>
   );
