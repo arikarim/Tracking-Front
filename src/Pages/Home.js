@@ -16,7 +16,7 @@ const Home = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const measurments = useSelector((state) => state.measurments);
   const getProgress = () => {
-    if (measurments[0]) {
+    if (measurments[0] && user !== null) {
       const res = measurments[0].filter(
         (d) => d.user_id === user.id,
       );
@@ -60,7 +60,7 @@ const Home = () => {
     <Container fluid className="cont">
       <Progress number={progress === null ? 0 : progress.toFixed(2)} time="last month" />
       <Col className="d-flex flex-wrap">
-        {measures[0]
+        {measures[0] && user !== null
           && measures[0].map((d) => (
             <Link
               className="my-auto px-2 col-6 text-decoration-none link-dark"
