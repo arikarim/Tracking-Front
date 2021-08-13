@@ -18,7 +18,6 @@ function App() {
       try {
         const data = await axios.get('https://cryptic-falls-25172.herokuapp.com/measurments');
         dispatch(createMeasurments(data.data));
-        console.log(data.data);
       } catch (e) {
         alertt('Server problem');
       }
@@ -26,7 +25,6 @@ function App() {
   };
   useEffect(() => {
     fetchMeasurments();
-    console.log(count);
   }, [count]);
 
   useEffect(() => {
