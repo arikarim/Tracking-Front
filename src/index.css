@@ -42,3 +42,7 @@ code {
   height: 150px;
   border-radius: 50%;
 }
+
+.activee {
+  background-color: rgb(0, 174, 255) !important;
+}

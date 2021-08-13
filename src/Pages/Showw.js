@@ -18,27 +18,22 @@ const Show = () => {
   const dispatch = useDispatch();
   const count = useSelector((state) => state.count);
 
-  const fetchData = async () => {
-    try {
-      const data = await axios.get(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
-      setData(data.data);
-      setProgress(data.data.number);
-    } catch (e) {
-      const alert = document.querySelector('.alert');
-      alert.classList.remove('d-none');
-      alert.classList.add('d-block');
-      alert.innerHTML = 'Server problem';
-      setTimeout(() => {
-        alert.classList.add('d-none');
-        alert.classList.remove('d-block');
-      }, 3000);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await axios.get(`https://cryptic-falls-25172.herokuapp.com/measurments/${id}`);
+        setData(data.data);
+        setProgress(data.data.number);
+      } catch (e) {
+        alertt('Server problem');
+      }
+    };
+
     fetchData();
-    // eslint-disable-next-line
-  }, []);
+    return () => {
+      setData([]);
+    };
+  }, [id]);
 
   const onDelete = async () => {
     try {
