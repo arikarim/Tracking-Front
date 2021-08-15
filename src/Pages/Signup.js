@@ -18,14 +18,18 @@ const Signup = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post('https://cryptic-falls-25172.herokuapp.com/users', {
-        user: {
-          email,
-          password,
+      const data = await axios.post(
+        'https://cryptic-falls-25172.herokuapp.com/users',
+        {
+          user: {
+            email,
+            password,
+          },
         },
-      });
+      );
       localStorage.setItem('token', JSON.stringify(data.headers.authorization));
       localStorage.setItem('user', JSON.stringify(data.data.user));
+      localStorage.setItem('valid', JSON.stringify('valid'));
       setUser(data.data.user);
       history.push('/');
       alertt('Signed up successfully');
@@ -39,7 +43,10 @@ const Signup = ({ setUser }) => {
         onSubmit={handleSubmit}
         className="my-5 d-flex flex-column  col-10 col-md-8 mx-auto p-5"
       >
-        <label htmlFor="email" className="col-form-label my-2 d-flex flex-column">
+        <label
+          htmlFor="email"
+          className="col-form-label my-2 d-flex flex-column"
+        >
           Email
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -50,7 +57,10 @@ const Signup = ({ setUser }) => {
             required
           />
         </label>
-        <label htmlFor="password" className="col-form-label my-2 d-flex flex-column">
+        <label
+          htmlFor="password"
+          className="col-form-label my-2 d-flex flex-column"
+        >
           Password
           <input
             onChange={(e) => setPassword(e.target.value)}

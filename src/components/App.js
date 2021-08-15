@@ -52,7 +52,6 @@ function App() {
               Authorization: toke,
             },
           });
-          localStorage.setItem('correctuser', JSON.stringify(data.data.user));
           dispatch(createUser(data.data.user));
           localStorage.setItem('valid', JSON.stringify('valid'));
         } catch (e) {
