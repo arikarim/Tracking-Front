@@ -39,14 +39,14 @@ const Navv = () => {
               </button>
             </Nav>
           ) : (
-            <Nav className="me-auto">
-              <Link className="text-decoration-none link-light" to="/">
+            <Nav className="w-100 d-md-flex justify-content-md-end">
+              <Link className="text-decoration-none x-md-3 link-light text-center" to="/">
                 Home
               </Link>
-              <Link className="text-decoration-none link-light" to="/login">
+              <Link className="text-decoration-none x-md-3 link-light text-center" to="/login">
                 Login
               </Link>
-              <Link className="text-decoration-none link-light" to="/signup">
+              <Link className="text-decoration-none x-md-3 link-light text-center" to="/signup">
                 Sign Up
               </Link>
             </Nav>
