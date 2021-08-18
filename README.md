@@ -9,6 +9,7 @@ This is Progress Dev application for tracking daily activities.
   </p>
 </p
 
+
 ## Screenshots of the app.
 
 ![image](./src/images/s1.png)
