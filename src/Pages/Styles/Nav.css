@@ -1,0 +1,14 @@
+.nav {
+  background: #8bbedb;
+}
+
+.toglle {
+  border: none;
+}
+
+.logout-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+}
